@@ -30,7 +30,7 @@ The November 4 update adds three built-in ImageGen assets:
 - `glass-pipe-mobile.png`: a straight glass tube segment repeated vertically to keep moving documents in a narrow rail beside mobile text.
 - `data-document.png`: a cobalt-blue adaptation of the user's attached two-documents-and-chain-link symbol, with transparent surroundings and white document fill.
 
-The animation uses the generated PNG icon on an invisible CSS motion path, with a measured geometry aligned to the original pipe. The path is animation metadata, not a replacement illustration. On phones the same icon follows a responsive motion path down the glass rail and into the robot. Moving documents and pipes are decorative and excluded from the accessibility tree. Motion starts paused for reduced-motion users and can be paused or resumed with a visible footer control.
+The animation uses the WebP document icon on an invisible CSS motion path aligned with the original pipe. The inactive desktop or compact layout is hidden, leaving a maximum of three document buttons on screen. Desktop cycles last 180 seconds and compact cycles last 105 seconds. The pipe continues straight through Production to the bottom. System reduced motion pauses the documents, including changes while the page is open. Opening a document’s accessible sample-data preview pauses all packets; dismissing it resumes their existing progress. There is no global pause/play control.
 
 ## Prediction robot footer
 
@@ -44,11 +44,9 @@ The robot uses the user's November 4 biped reference for its broad screen, compa
 
 The two labels, Spam and No Spam, alternate on document animation arrivals. This is an illustrative classification demo, not a trained model or email processing service. Pausing the document flow also stops result updates.
 
-The document layer uses spatial CSS masks at the metal coupling bands, including the desktop extension and robot input. Mobile masks follow the tube's 270px repeat period and recalculate with the page layout. These masks provide opaque occlusion while preserving the original raster artwork and transparent glass.
+The document layer uses spatial CSS masks at the metal coupling bands, including both collars of the straight desktop finish. Mobile masks follow the tube's 270px repeat period and recalculate with the page layout. These masks provide opaque occlusion while preserving the original raster artwork and transparent glass.
 
-The winding desktop glass is now rendered in slices, with a one-pixel raster row extended at native y600, y1140, and y1540. Each inserted straight section occupies 50 CSS pixels. This reuses the original image and preserves its bends, pipe diameter, and coupling artwork. Shared geometry moves document paths and masks with the extended image.
-
-After the introduction was removed, LearningViewport offsets the complete desktop composition by 280 native pixels and reduces its layout height equally. The underlying raster slices, motion coordinates, coupling masks, longer vertical runs, and seamless connector remain unchanged.
+The winding desktop glass is rendered in slices, stretching straight raster rows at native y320, y600, y1140, and y1540. The inserted straight sections add 50, 200, 400, and 100 CSS pixels respectively; Cleaning also retains an 81-native-pixel compensation. Shared geometry moves the motion paths and coupling masks with the artwork. The straight finish reuses the same raster with silver bands at native y1672 and y2102–2122. LearningViewport shows the complete pipe entry beside the introductory heading.
 
 ## Resource library thumbnails
 
