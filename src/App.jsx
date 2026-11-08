@@ -12,9 +12,11 @@ import { StageDescription } from './StageDescription.jsx';
 import { useScrollReveal } from './useScrollReveal.js';
 import { ProgressiveImage } from './ProgressiveImage.jsx';
 import { SqlEditor } from './SqlEditor.jsx';
+import { isResourcesPath, resourceLibraryHref } from './resource-library-state.js';
 import './pipeline-introduction.css';
 
 const StagePage = lazy(() => import('./StagePage.jsx').then(module => ({ default: module.StagePage })));
+const ResourcesPage = lazy(() => import('./ResourcesPage.jsx'));
 
 function ResourceLink({ id }) {
   const resource = resources.find(item => item.id === id);
@@ -31,6 +33,9 @@ function ResourceLink({ id }) {
 
 export function App() {
   const stage = getStagePage(window.location.pathname);
+  if (isResourcesPath(window.location.pathname)) {
+    return <Suspense fallback={<main className="detail-page"><a href="/">Back to the learning path</a><p role="status">Loading resources…</p></main>}><ResourcesPage /></Suspense>;
+  }
   return stage ? <Suspense fallback={<main className="detail-page"><a href="/">Back to the learning path</a><p role="status">Loading study page…</p></main>}><StagePage stage={stage} /></Suspense> : <LearningPath />;
 }
 
@@ -77,7 +82,7 @@ function LearningPath() {
           <StageDescription stageId="modeling" />
           <div className="station-content">
             <ProgressiveImage className="learning-art tree-art" src="/assets/decision-tree.webp" alt="A decision tree with two branching levels and four prediction leaves labeled zero and one." width="1430" height="1100" />
-            <div className="resource-list"><ResourceLink id="sklearn" /><a className="more-link" data-reveal="" href={'https://scikit-learn.org/stable/getting_started.html'}>Explore models & evaluation <ArrowRight aria-hidden="true" /></a></div>
+            <div className="resource-list"><ResourceLink id="sklearn" /><a className="more-link" data-reveal="" href={resourceLibraryHref('Modeling')}>Explore models & evaluation <ArrowRight aria-hidden="true" /></a></div>
           </div>
         </section>
       </main>
