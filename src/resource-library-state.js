@@ -34,3 +34,24 @@ export function filterLibraryResources({ group = 'All resources', query = '', ca
   });
 }
 
+export function chooseResourceIds(matches, random = Math.random) {
+  const categories = new Map();
+  for (const resource of matches) {
+    if (!categories.has(resource.category)) categories.set(resource.category, []);
+    categories.get(resource.category).push(resource.id);
+  }
+
+  const selected = new Set();
+  for (const ids of categories.values()) {
+    // Partial Fisher–Yates sampling gives every resource an equal chance.
+    const count = Math.min(3, ids.length);
+    if (ids.length > count) {
+      for (let index = 0; index < count; index++) {
+        const swap = index + Math.floor(random() * (ids.length - index));
+        [ids[index], ids[swap]] = [ids[swap], ids[index]];
+      }
+    }
+    ids.slice(0, count).forEach(id => selected.add(id));
+  }
+  return matches.filter(resource => selected.has(resource.id)).map(resource => resource.id);
+}
