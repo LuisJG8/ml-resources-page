@@ -1,0 +1,33 @@
+.production-footer {
+  position: relative;
+  container-type: inline-size;
+  width: min(100%, 896px);
+  aspect-ratio: 941 / 450;
+  margin: 0 auto;
+  /* Let clicks reach the document packets in the continuing pipe. */
+  pointer-events: none;
+}
+
+.production-copy {
+  pointer-events: auto;
+  position: absolute;
+  left: 15.4%;
+  top: 24%;
+  width: 60%;
+}
+
+/* All four stage headings share typography and breakpoints in styles.css
+   and responsive.css. */
+.production-intro { color: var(--muted); font-size: 1.7cqw; line-height: 1.5; margin-top: 1.2cqw; }
+.production-footer .more-link { color: var(--blue); margin-top: 1.2cqw; }
+
+@media (max-width: 1023px) {
+  .production-footer {
+    width: min(100%, 680px);
+    aspect-ratio: auto;
+    padding: 24px clamp(18px, 4vw, 32px) 36px 44px;
+  }
+  .production-copy { position: static; width: auto; }
+  .production-intro { font-size: 17px; margin-top: 12px; }
+  .production-footer .more-link { font-size: 14px; margin-top: 12px; min-height: 44px; }
+}

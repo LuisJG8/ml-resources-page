@@ -1,0 +1,126 @@
+.pipeline-flow {
+  position: absolute;
+  inset: 0 auto auto 0;
+  width: 100%;
+  --pipe-extra-0: 52.511160714;
+  --pipe-extra-1: 210.044642857;
+  --pipe-extra-2: 501.089285714;
+  --pipe-extra-3: 105.022321428;
+  --pipe-total-extra: calc(var(--pipe-extra-0) + var(--pipe-extra-1) + var(--pipe-extra-2) + var(--pipe-extra-3));
+  height: calc(2203px * var(--pipe-scale) + 750px);
+  z-index: -1;
+  pointer-events: none;
+  user-select: none;
+  overflow: hidden;
+}
+
+.pipeline-canvas {
+  position: absolute;
+  inset: 0 auto auto 0;
+  width: 941px;
+  height: calc(2122px + var(--pipe-total-extra) * 1px);
+  transform-origin: top left;
+  transform: scale(var(--pipe-scale, 1));
+}
+
+.glass-shell {
+  position: absolute;
+  inset: 0;
+  width: 941px;
+  height: calc(1672px + var(--pipe-total-extra) * 1px);
+  z-index: 2;
+  opacity: .52;
+}
+
+.pipeline-packets { position: absolute; inset: 0; z-index: 1; }
+
+.pipe-slice { position: absolute; left: 0; width: 941px; overflow: hidden; }
+.pipe-slice img { position: absolute; left: 0; width: 941px; height: 1672px; max-width: none; display: block; }
+
+.desktop-pipe-end { position: absolute; top: calc(1672px + var(--pipe-total-extra) * 1px); left: 0; width: 941px; height: 450px; overflow: hidden; z-index: 2; opacity: .52; }
+.desktop-pipe-end > div { position: absolute; overflow: hidden; }
+.desktop-pipe-end img { position: absolute; width: 941px; height: 1672px; max-width: none; display: block; }
+/* Extend a straight raster row at its native width, preserving the glass edges. */
+.pipe-end-glass { inset: 0; }
+.pipe-end-glass img { left: 0; top: calc(-1540px * 450); transform: scaleY(450); transform-origin: top left; }
+.pipe-end-band { left: 835px; width: 77px; height: 20px; }
+.pipe-end-band img { left: -835px; top: -664px; }
+
+.data-packet {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 32px;
+  height: 32px;
+  offset-anchor: center;
+  offset-path: var(--desktop-route);
+  offset-rotate: 0deg;
+  animation: pipeline-data-flow 180s linear infinite;
+  will-change: offset-distance;
+}
+
+@keyframes pipeline-data-flow {
+  0% { offset-distance: 0%; opacity: 0; }
+  1.5% { opacity: 1; }
+  98.5% { opacity: 1; }
+  100% { offset-distance: 100%; opacity: 0; }
+}
+
+.pipeline-flow[data-paused='true'] .data-packet,
+.mobile-pipeline[data-paused='true'] .mobile-data-packet {
+  animation-play-state: paused;
+}
+
+.packet-trigger { padding: 0; border: 0; background: none; border-radius: 4px; pointer-events: auto; cursor: pointer; }
+.packet-trigger img { display: block; width: 100%; height: 100%; pointer-events: none; }
+/* Keep the original document size, with a larger invisible touch target. */
+.packet-trigger::after { content: ''; position: absolute; width: 44px; height: 44px; left: 50%; top: 50%; transform: translate(-50%, -50%); }
+.packet-trigger:focus-visible { outline-offset: 3px; }
+
+.mobile-pipeline { display: none; }
+
+@media (max-width: 1023px) {
+  .pipeline-flow { display: none; }
+
+  .mobile-pipeline {
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    overflow: hidden;
+    pointer-events: none;
+    user-select: none;
+    z-index: -1;
+  }
+
+  .mobile-glass {
+    position: absolute;
+    left: 2px;
+    top: 0;
+    width: 32px;
+    height: var(--mobile-rail-height, 100%);
+    background: url('/assets/glass-pipe-mobile.webp') center top / 90px auto repeat-y;
+    opacity: .52;
+    z-index: 2;
+  }
+
+  .mobile-data-packet {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 20px;
+    height: 20px;
+    offset-path: var(--mobile-route);
+    offset-anchor: center;
+    offset-rotate: 0deg;
+    animation: pipeline-data-flow 105s linear infinite;
+    will-change: offset-distance;
+  }
+
+  .mobile-packets { position: absolute; inset: 0; }
+
+}
+
+/* Preserve the raster shell opacity when it participates in scroll reveals. */
+.desktop-pipe-end, .mobile-glass { --reveal-opacity: .52; }

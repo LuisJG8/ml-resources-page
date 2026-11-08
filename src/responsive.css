@@ -1,0 +1,134 @@
+/* Scale the full desktop composition from its actual container, including on
+   ultrawide displays. The compact layout uses normal document flow. */
+body { min-width: 0; }
+.learning-viewport { width: min(100%, 896px); margin-inline: auto; }
+.page { height: auto; aspect-ratio: 941 / 1672; }
+.header nav { font-size: clamp(14px, 1.55cqw, 20px); }
+.header nav a, .header nav button {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+.station-content > *, .library-resource > div { min-width: 0; }
+.primary-button { max-width: 100%; }
+.primary-button svg { flex-shrink: 0; }
+.resource-title, .library-resource h3, .library-resource p { overflow-wrap: anywhere; }
+
+@media (min-width: 1024px) {
+  .page, .production-footer { width: min(100%, 896px); }
+  /* Align stage copy with the entry tube's left edge (native x39 of 941). */
+  .station, .production-copy { left: calc(100% * 39 / 941); }
+  .page {
+    --pipe-scale: .9521785335;
+    height: calc(1753px * var(--pipe-scale) + 750px);
+    aspect-ratio: auto;
+  }
+  .hero { top: calc(123.728px * var(--pipe-scale)); }
+  .foundations { top: calc(518.32px * var(--pipe-scale) + 50px); }
+  .models {
+    top: calc(974.776px * var(--pipe-scale) + 250px);
+    /* The widest left coupling ends at native x100; keep a fixed 20px gap. */
+    left: calc(100px * var(--pipe-scale) + 20px);
+    right: auto;
+    width: 57.6%;
+  }
+  .practice { top: calc(1480.464px * var(--pipe-scale) + 630px); }
+  .production-copy { top: 10%; }
+  .models .station-intro { margin-top: 18px; }
+  .models .station-content { grid-template-columns: minmax(0, 1fr); gap: 32px; margin-top: 32px; }
+  .models .sklearn-art { justify-content: flex-start; padding: 0; }
+  .models .sklearn-art img { width: 240px; max-width: 100%; }
+  .models .resource-link { padding-bottom: 22px; }
+  .models .resource-link + .resource-link { padding-top: 22px; }
+}
+
+dialog {
+  max-height: calc(100dvh - 32px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+.search input { font-size: 16px; }
+.close-button, .filters button { min-width: 44px; min-height: 44px; }
+
+@media (max-width: 1023px) {
+  .learning-viewport { width: min(100%, 680px); }
+  .page > main { display: flow-root; padding-top: clamp(28px, 6vw, 48px); }
+  .page > main { display: flow-root; }
+  /* The page and Production section share one continuous rail. */
+  .page, .production-footer { width: min(100%, 680px); }
+  .page {
+    aspect-ratio: auto;
+    height: auto;
+    padding: 0 clamp(18px, 4vw, 32px) 24px 44px;
+    overflow: visible;
+  }
+  .header { padding: 16px 0; }
+  .header nav {
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: clamp(14px, 3.5vw, 28px);
+    font-size: 14px;
+  }
+  .header nav a { display: inline-flex; }
+  .hero {
+    margin: clamp(36px, 8vw, 64px) 0 clamp(64px, 12vw, 100px);
+    padding-left: 0;
+  }
+  .hero h1 {
+    font-size: clamp(36px, 7.8vw, 58px);
+    line-height: 1.06;
+    max-width: 600px;
+  }
+  .hero p { font-size: clamp(17px, 2.5vw, 20px); max-width: 42ch; }
+  .primary-button { gap: 12px; padding: 16px; font-size: 16px; }
+  .station {
+    padding-left: 0;
+    margin-bottom: clamp(64px, 10vw, 96px);
+  }
+  /* Compact glass ends at x34; page copy begins at x44. */
+  .models { margin-left: 10px; }
+  :is(.station, .production-footer) h2 { font-size: clamp(30px, 5.2vw, 40px); max-width: none; }
+  .station-intro { max-width: 48ch; font-size: 17px; }
+  .station-content, .practice .station-content { grid-template-columns: minmax(0, 1fr); }
+  .learning-art, .math-art, .tree-art { max-width: 100%; width: min(100%, 320px); }
+  .resource-list { max-width: none; }
+  .resource-title { font-size: clamp(18px, 2.7vw, 20px); }
+  .resource-description { font-size: 16px; }
+  .practice { margin-bottom: 0; }
+  .dialog-surface { padding: clamp(18px, 4vw, 32px); }
+  .dialog-heading { gap: 12px; }
+  .dialog-heading h2, .about-dialog h2 { font-size: clamp(27px, 4.5vw, 36px); }
+  .search input { font-size: 16px; }
+}
+
+@media (min-width: 600px) and (max-width: 1023px) {
+  :is(.station, .production-footer) h2 > span { display: inline; font-size: inherit; }
+  .station-content, .practice .station-content {
+    grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr);
+    gap: 28px;
+    align-items: center;
+    margin-top: 32px;
+  }
+  .learning-art, .math-art, .tree-art { width: 100%; margin: 0; }
+  .sklearn-art { padding: 0; }
+  .sklearn-art img { width: 100%; }
+  .resource-link { padding: 18px 0; }
+}
+
+@media (max-width: 359px) {
+  .hero h1 { font-size: 36px; }
+  .hero p { font-size: 17px; }
+  .primary-button { font-size: 15px; }
+  .header nav { font-size: 13px; gap: 14px; }
+  :is(.station, .production-footer) h2 { font-size: 30px; }
+}
+
+/* Four-stage navigation shares the existing pipe. */
+.header nav { gap: clamp(12px, 1.8cqw, 22px); }
+@media (max-width: 1023px) {
+  .header nav { justify-content: flex-start; gap: 4px 18px; white-space: normal; }
+}
+
+@media (min-width: 1024px) {
+  #modeling .tree-art { width: 90%; max-height: 20cqw; object-fit: contain; transform: none; }
+}
