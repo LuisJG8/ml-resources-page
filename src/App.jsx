@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { lazy, Suspense, useEffect, useState } from 'react';
 import { ArrowRight } from '@phosphor-icons/react/dist/csr/ArrowRight';
 import { Database } from '@phosphor-icons/react/dist/csr/Database';
 import { ArrowUpRight } from '@phosphor-icons/react/dist/csr/ArrowUpRight';
@@ -6,6 +6,7 @@ import { Pipeline } from './Pipeline.jsx';
 import { ProductionFooter } from './ProductionFooter.jsx';
 import { LearningViewport } from './LearningViewport.jsx';
 import { resources } from './resources.js';
+import { getStagePage } from './stage-pages.js';
 import { StageHeadingLink } from './StageHeadingLink.jsx';
 import { StageDescription } from './StageDescription.jsx';
 import { useScrollReveal } from './useScrollReveal.js';
@@ -13,6 +14,7 @@ import { ProgressiveImage } from './ProgressiveImage.jsx';
 import { SqlEditor } from './SqlEditor.jsx';
 import './pipeline-introduction.css';
 
+const StagePage = lazy(() => import('./StagePage.jsx').then(module => ({ default: module.StagePage })));
 
 function ResourceLink({ id }) {
   const resource = resources.find(item => item.id === id);
@@ -28,7 +30,8 @@ function ResourceLink({ id }) {
 }
 
 export function App() {
-  return <LearningPath />;
+  const stage = getStagePage(window.location.pathname);
+  return stage ? <Suspense fallback={<main className="detail-page"><a href="/">Back to the learning path</a><p role="status">Loading study page…</p></main>}><StagePage stage={stage} /></Suspense> : <LearningPath />;
 }
 
 function LearningPath() {
