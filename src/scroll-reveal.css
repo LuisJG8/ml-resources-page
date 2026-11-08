@@ -1,0 +1,13 @@
+[data-reveal] { transition: opacity 650ms ease-out; }
+[data-reveal][data-reveal-state='pending'] { opacity: 0; transition: none; }
+[data-reveal][data-reveal-state='visible'] { opacity: var(--reveal-opacity, 1); }
+[data-reveal][data-reveal-state='immediate'],
+[data-reveal]:focus-within { opacity: var(--reveal-opacity, 1); transition: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] { opacity: var(--reveal-opacity, 1) !important; transition: none !important; }
+}
+
+@media print {
+  [data-reveal] { opacity: var(--reveal-opacity, 1) !important; transition: none !important; }
+}
