@@ -5,10 +5,12 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "pnpm run typecheck && vite build",
     "preview": "vite preview",
-    "test": "node --test tests/*.test.mjs && npm run test:components",
-    "test:components": "vitest run"
+    "test": "pnpm run test:unit && pnpm run test:components",
+    "test:components": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "test:unit": "node --test tests/*.test.ts"
   },
   "dependencies": {
     "@phosphor-icons/react": "^2.1.10",
@@ -18,9 +20,18 @@
     "vite": "6.4.2"
   },
   "devDependencies": {
+    "@testing-library/dom": "^10.4.2",
     "@testing-library/react": "^16.3.3",
     "@testing-library/user-event": "^14.6.8",
+    "@types/node": "^24.19.2",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
     "jsdom": "^29.1.1",
+    "typescript": "^7.0.2",
     "vitest": "^3.2.7"
+  },
+  "packageManager": "pnpm@11.0.6",
+  "engines": {
+    "node": ">=24"
   }
 }

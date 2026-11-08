@@ -1,14 +1,14 @@
 # ML Resources Page
 
-A standalone React/Vite app for learning the end-to-end classical machine learning pipeline. All frontend code, illustrations, pipe textures, document icons, locally hosted Manrope fonts, and font licenses are included.
+A standalone React/TypeScript/Vite app for learning the end-to-end classical machine learning pipeline. All frontend code, illustrations, pipe textures, document icons, locally hosted Manrope fonts, and font licenses are included.
 
 ## Run locally
 
-Use Node.js 24 (see `.node-version`) and npm.
+Use Node.js 24 (see `.node-version`) and pnpm 11.0.6 (pinned in `package.json`).
 
 ```sh
-npm ci
-npm run dev
+pnpm install --frozen-lockfile
+pnpm run dev
 ```
 
 Open the local URL printed by Vite. No account, API keys, backend, environment variables, or Sites connection is required.
@@ -16,22 +16,24 @@ Open the local URL printed by Vite. No account, API keys, backend, environment v
 ## Test and build
 
 ```sh
-npm test
-npm run build
-npm run preview
+pnpm run typecheck
+pnpm test
+pnpm run build
+pnpm run preview
 ```
 
-GitHub Actions runs tests and a production build on every pull request and on `main`. `npm run test:components` runs the rendered React button tests separately.
+GitHub Actions uses pnpm with a frozen lockfile and runs tests and a type-checked production build on every pull request and on `main`. `pnpm run test:components` runs the rendered React button tests separately.
 
-The production output is `dist/`. `npm run preview` serves that build locally. For production, use any static host with an SPA fallback to `/index.html` for application routes. Keep existing asset requests served normally.
+The production output is `dist/`. `pnpm run preview` serves that build locally. For production, use any static host with an SPA fallback to `/index.html` for application routes. Keep existing asset requests served normally.
 
 ## Project structure
 
-- `src/`: React components, styles, pipeline animation/geometry, stage descriptions, and resource data.
+- `src/`: strictly typed React components (`.tsx`) and shared logic/data (`.ts`), styles, pipeline animation/geometry, stage descriptions, and resource data.
 - `public/assets/`: bundled images, icons, fonts, and licenses.
 - `tests/`: route/content, pipeline geometry, progressive loading, scroll reveal, and resource chooser component checks.
 - `index.html`: app entry point and default metadata.
-- `vite.config.mjs`: standard Vite configuration.
+- `vite.config.ts`, `vitest.config.ts`, and `tsconfig.json`: build, component-test, and strict TypeScript configuration.
+- `pnpm-lock.yaml`: reproducible dependency versions; pnpm is the project package manager.
 - `ASSETS.md`: asset provenance and design references.
 - `AGENTS.md`: project conventions and accepted design decisions.
 - `design-qa.md`: historical design review notes.
@@ -60,3 +62,7 @@ The original hosted website and source checkout remain intact as a backup. Histo
 ## Resource chooser
 
 “Choose for me” randomly shows up to three resources per format from the current search, category, and stage scope. Smaller categories keep all available resources. “Choose again” draws another shortlist; “Show all matches” restores the full filtered list. Filter edits clear picks, and refresh restores the full list for the URL filters. Selections stay in memory and do not change shared URLs.
+
+## TypeScript checks
+
+`pnpm run typecheck` checks the app, both test suites, and the Vite/Vitest configs without emitting JavaScript. `pnpm run build` includes this check before bundling. Utility tests run directly through Node 24’s TypeScript support; React component tests use Vitest and jsdom. Keep relative TypeScript imports explicit so both the browser build and Node test runner resolve the same modules.
