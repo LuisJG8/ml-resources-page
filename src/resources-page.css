@@ -1,0 +1,27 @@
+.resources-page { width: min(calc(100% - 64px), 880px); margin: 0 auto; padding: 36px 0 64px; }
+.resources-page .search { margin-top: 28px; }
+.resources-page .library-results { margin-top: 4px; }
+.library-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin: 24px 0 32px; }
+.library-reset { color: var(--blue); font-size: 13px; min-height: 44px; padding: 8px 0; }
+.library-reset:hover { text-decoration: underline; text-underline-offset: 4px; }
+.library-toolbar .results-count { margin: 0; }
+.resource-category + .resource-category { margin-top: 40px; }
+.resource-category > h2 { display: flex; align-items: center; gap: 12px; padding-bottom: 8px; border-bottom: 1px solid var(--line); font-size: 24px; line-height: 1.3; font-weight: 700; letter-spacing: -.035em; }
+.resource-category > h2 > span { display: inline-grid; place-items: center; min-width: 24px; height: 24px; padding: 0 6px; border-radius: 50px; background: #e8eef5; color: var(--muted); font-size: 12px; font-weight: 600; letter-spacing: 0; }
+.resource-meta .resource-access { display: inline-block; margin-left: 10px; padding: 2px 7px; border-radius: 4px; background: #edf3ff; color: var(--blue); }
+.library-resource > div { flex: 1; }
+.library-resource-preview { position: relative; display: block; flex: 0 0 112px; }
+.resource-thumbnail { display: block; width: 100%; height: auto; object-fit: contain; padding: 8px; border: 1px solid var(--line); border-radius: 10px; background: #fff; }
+.library-resource-preview > svg { position: absolute; right: -7px; bottom: -7px; width: 26px; height: 26px; padding: 5px; border: 1px solid var(--line); border-radius: 50%; background: #fff; color: var(--blue); transition: transform .2s; }
+.library-resource:hover .library-resource-preview > svg { transform: translate(2px, -2px); }
+
+@media (max-width: 760px) {
+  .resources-page { width: min(calc(100% - 40px), 620px); padding-top: 20px; }
+}
+
+@media (max-width: 480px) {
+  .library-toolbar { flex-wrap: wrap; align-items: flex-start; gap: 12px; }
+  .library-resource { gap: 16px; }
+  .library-resource-preview { flex-basis: 80px; }
+  .resource-thumbnail { padding: 5px; border-radius: 8px; }
+}
