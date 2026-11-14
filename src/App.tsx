@@ -1,37 +1,21 @@
 import { lazy, Suspense, useEffect, useState } from 'react';
 import { ArrowRight } from '@phosphor-icons/react/dist/csr/ArrowRight';
 import { DatabaseStackIcon } from './DatabaseStackIcon.tsx';
-import { ArrowUpRight } from '@phosphor-icons/react/dist/csr/ArrowUpRight';
 import { Pipeline } from './Pipeline.tsx';
 import { ProductionFooter } from './ProductionFooter.tsx';
 import { LearningViewport } from './LearningViewport.tsx';
-import { studyResources as resources } from './study-resources.ts';
 import { getStagePage } from './stage-pages.ts';
 import { StageHeadingLink } from './StageHeadingLink.tsx';
 import { StageDescription } from './StageDescription.tsx';
-import { useScrollReveal } from './useScrollReveal.ts';
 import { ProgressiveImage } from './ProgressiveImage.tsx';
+import { useScrollReveal } from './useScrollReveal.ts';
 import { SqlEditor } from './SqlEditor.tsx';
 import { CustomerDataCleaning } from './CustomerDataCleaning.tsx';
-import { isResourcesPath, resourceLibraryHref } from './resource-library-state.ts';
+import { isResourcesPath } from './resource-library-state.ts';
 import './pipeline-introduction.css';
 
 const StagePage = lazy(() => import('./StagePage.tsx').then(module => ({ default: module.StagePage })));
 const ResourcesPage = lazy(() => import('./ResourcesPage.tsx'));
-
-function ResourceLink({ id }: { id: string }) {
-  const resource = resources.find(item => item.id === id);
-  if (!resource) return null;
-  const featuredCopy: Record<string, string> = {
-    isl: 'A practical introduction to the core ideas and models in machine learning.',
-    google: 'Learn core ML concepts with clear lessons, visual examples, and hands-on exercises.',
-  };
-  return <a className="resource-link" data-reveal="" href={resource.url} target="_blank" rel="noopener noreferrer">
-    <span className="resource-title"><span>{resource.title}{resource.subtitle && <> <span className="resource-dash">—</span> {resource.subtitle}</>}</span><ArrowUpRight aria-hidden="true" weight="regular" /></span>
-    <span className="resource-description">{featuredCopy[id] || resource.description}</span>
-    <span className="sr-only"> (opens in a new tab)</span>
-  </a>;
-}
 
 export function App() {
   const stage = getStagePage(window.location.pathname);
@@ -58,7 +42,7 @@ function LearningPath() {
       <Pipeline paused={flowPaused} />
       <main aria-label="Classical machine learning resources">
         <header className="pipeline-introduction">
-          <h1 data-reveal="">the <span>machine learning pipeline</span></h1>
+          <h1 data-reveal="">The <span>machine learning pipeline</span> 🤖</h1>
         </header>
         <section className="station foundations" id="data-sourcing" aria-labelledby="data-sourcing-title">
           <h2 id="data-sourcing-title" data-reveal=""><StageHeadingLink stageId="data-sourcing" /></h2>
@@ -75,16 +59,15 @@ function LearningPath() {
           <StageDescription stageId="data-cleaning" />
           <div className="station-content">
             <CustomerDataCleaning />
-            <div className="resource-list"><ResourceLink id="pandas" /><ResourceLink id="preprocessing" /></div>
           </div>
         </section>
 
         <section className="station practice" id="modeling" aria-labelledby="modeling-title">
           <h2 id="modeling-title" data-reveal=""><StageHeadingLink stageId="modeling" /></h2>
           <StageDescription stageId="modeling" />
-          <div className="station-content">
-            <ProgressiveImage className="learning-art tree-art" src="/assets/decision-tree.webp" alt="A decision tree with two branching levels and four prediction leaves labeled zero and one." width="1430" height="1100" />
-            <div className="resource-list"><ResourceLink id="sklearn" /><a className="more-link" data-reveal="" href={resourceLibraryHref()}>Browse all resources <ArrowRight aria-hidden="true" /></a></div>
+          <div className="modeling-logos">
+            <ProgressiveImage src="/assets/xgboost-logo.webp" alt="XGBoost" width={408} height={138} />
+            <ProgressiveImage src="/assets/lightgbm-logo.svg" alt="LightGBM" width={4672} height={1058} />
           </div>
         </section>
       </main>

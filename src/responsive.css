@@ -15,6 +15,21 @@ body { min-width: 0; }
 .models .station-content { grid-template-columns: minmax(0, 1fr); gap: 32px; margin-top: 32px; }
 .resource-title, .library-resource h3, .library-resource p { overflow-wrap: anywhere; }
 
+.modeling-logos {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: center;
+  gap: clamp(20px, 4vw, 40px);
+  max-width: 520px;
+  margin-top: 32px;
+}
+.modeling-logos img {
+  display: block;
+  width: 100%;
+  height: clamp(60px, 9vw, 96px);
+  object-fit: contain;
+}
+
 @media (min-width: 1024px) {
   .page, .production-footer { width: min(100%, 896px); }
   /* Align stage copy with the entry tube's left edge (native x39 of 941). */
@@ -30,9 +45,8 @@ body { min-width: 0; }
     /* Midpoint of the extended horizontal runs at native y910 and y1296.
        Translate by the actual content height to keep both clearances equal. */
     top: calc(1143.5px * var(--pipe-scale) + 450px);
-    transform: translateY(-50%);
-    /* The widest left coupling ends at native x100; keep a fixed 20px gap. */
-    left: calc(100px * var(--pipe-scale) + 20px);
+    transform: translate(-50%, -50%);
+    left: 50%;
     right: auto;
     width: 57.6%;
   }

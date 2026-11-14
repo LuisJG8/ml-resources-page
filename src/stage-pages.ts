@@ -21,7 +21,7 @@ export interface StagePageData {
 export const stagePages: readonly StagePageData[] = [
   {
     id: 'data-sourcing', path: '/daata-sourcing', aliases: ['/data-sourcing'], number: '01', title: 'Data Sourcing',
-    summary: 'Collect data from a source, often a database. Use simple SQL (DML) queries to extract what you need, then check its accuracy and completeness.',
+    summary: 'First step is to collect data from a source, often a relational database. Use SQL to connect to the database and extract the data you need.\n\nOften you are going to be using SQL DML (Data Manipulation Language) statements. The four main DML statements are SELECT, INSERT, UPDATE and DELETE.\n\nThe data would be on a raw state. In the real world the data is going to be dirty and we would clean it on the next step',
     art: '/assets/foundations.webp', artWidth: 1513, artHeight: 1039, artAlt: 'A translucent blue saddle surface on three coordinate axes.',
     topics: [
       { title: 'Define what you want to predict', text: 'Write down the question, what one row represents, and the outcome you want to estimate. Identify which inputs would actually be available when making a prediction.' },
