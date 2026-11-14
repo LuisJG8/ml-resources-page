@@ -73,3 +73,7 @@ The original hosted website and source checkout remain intact as a backup. Histo
 The library contains 52 curated resources: 7 video channels/series, 12 cloud and data-platform certifications, 15 books, 9 courses, and 9 interactive resources. Books cover every pipeline stage and include statistics foundations; An Introduction to Statistical Learning remains included. Creator, university, publisher, and vendor sources are recorded in [the research notes](docs/resource-research.md). The library omits documentation and dataset categories; existing homepage and study-page references remain available through `src/study-resources.ts`. Legacy category URLs fall back to all formats without clearing the remaining filters.
 
 All resource formats use the same image-first card gallery with consistent 200px artwork, centered titles, and a responsive three/two/one-column grid. Certifications retain provider headings for AWS, Microsoft Azure, Google Cloud, Databricks, and Snowflake. Descriptions remain searchable; access information remains accessible to screen readers. Filters and shortlists update the displayed cards and provider groups.
+
+## Contributors
+
+- **[Codex (OpenAI)](https://openai.com/codex/)** — AI-assisted development and design support.
