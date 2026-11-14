@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { stagePages, getStagePage } from '../src/stage-pages.ts';
-import { resources } from '../src/resources.ts';
+import { studyResources as resources } from '../src/study-resources.ts';
 
 test('each main section resolves to its own populated detail page', () => {
   const paths = ['/daata-sourcing', '/data-cleaning', '/modeling', '/production'];

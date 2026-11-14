@@ -11,7 +11,7 @@
 
 .sourcing-query .sql-editor { grid-area: editor; width: 100%; margin: 0; }
 .sourcing-database { grid-area: database; display: grid; place-items: center; color: var(--blue); }
-.sourcing-database svg { display: block; width: 112px; height: 112px; }
+.sourcing-database svg { display: block; width: 112px; height: 133px; }
 .sourcing-query-arrow { grid-area: arrow; display: grid; place-items: center; color: var(--blue); }
 .sourcing-query-arrow svg { display: block; width: 48px; height: 48px; }
 
@@ -99,7 +99,7 @@
   }
   .sourcing-query .sql-editor { max-width: none; }
   .sourcing-query-arrow svg { width: 36px; height: 36px; transform: rotate(90deg); }
-  .sourcing-database svg { width: 80px; height: 80px; }
+  .sourcing-database svg { width: 80px; height: 95px; }
 }
 
 @media (max-width: 359px) {

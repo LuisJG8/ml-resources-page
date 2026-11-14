@@ -9,13 +9,21 @@
   font-size: clamp(34px, 4.8cqw, 44px);
   line-height: 1.16;
   font-weight: 600;
-  font-style: italic;
-  font-synthesis: style;
+  font-style: normal;
   letter-spacing: -.045em;
   text-wrap: balance;
+  text-shadow: 0 0 20px rgb(7 68 255 / .1);
 }
 
-.pipeline-introduction h1 > span { color: var(--blue); }
+.pipeline-introduction h1 > span {
+  color: var(--blue);
+  text-shadow: 0 0 12px rgb(7 68 255 / .18), 0 0 28px rgb(7 68 255 / .1);
+}
+
+@media print, (forced-colors: active) {
+  .pipeline-introduction h1,
+  .pipeline-introduction h1 > span { text-shadow: none; }
+}
 
 @media (max-width: 1023px) {
   .pipeline-introduction {

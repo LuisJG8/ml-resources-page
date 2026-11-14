@@ -12,6 +12,7 @@ body { min-width: 0; }
 .station-content > *, .library-resource > div { min-width: 0; }
 .primary-button { max-width: 100%; }
 .primary-button svg { flex-shrink: 0; }
+.models .station-content { grid-template-columns: minmax(0, 1fr); gap: 32px; margin-top: 32px; }
 .resource-title, .library-resource h3, .library-resource p { overflow-wrap: anywhere; }
 
 @media (min-width: 1024px) {
@@ -26,7 +27,10 @@ body { min-width: 0; }
   .hero { top: calc(123.728px * var(--pipe-scale)); }
   .foundations { top: calc(518.32px * var(--pipe-scale) + 50px); }
   .models {
-    top: calc(974.776px * var(--pipe-scale) + 250px);
+    /* Midpoint of the extended horizontal runs at native y910 and y1296.
+       Translate by the actual content height to keep both clearances equal. */
+    top: calc(1143.5px * var(--pipe-scale) + 450px);
+    transform: translateY(-50%);
     /* The widest left coupling ends at native x100; keep a fixed 20px gap. */
     left: calc(100px * var(--pipe-scale) + 20px);
     right: auto;
@@ -35,9 +39,6 @@ body { min-width: 0; }
   .practice { top: calc(1480.464px * var(--pipe-scale) + 630px); }
   .production-copy { top: 10%; }
   .models .station-intro { margin-top: 18px; }
-  .models .station-content { grid-template-columns: minmax(0, 1fr); gap: 32px; margin-top: 32px; }
-  .models .sklearn-art { justify-content: flex-start; padding: 0; }
-  .models .sklearn-art img { width: 240px; max-width: 100%; }
   .models .resource-link { padding-bottom: 22px; }
   .models .resource-link + .resource-link { padding-top: 22px; }
 }
@@ -102,7 +103,6 @@ dialog {
 }
 
 @media (min-width: 600px) and (max-width: 1023px) {
-  :is(.station, .production-footer) h2 > span { display: inline; font-size: inherit; }
   .station-content, .practice .station-content {
     grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr);
     gap: 28px;
@@ -110,8 +110,6 @@ dialog {
     margin-top: 32px;
   }
   .learning-art, .math-art, .tree-art { width: 100%; margin: 0; }
-  .sklearn-art { padding: 0; }
-  .sklearn-art img { width: 100%; }
   .resource-link { padding: 18px 0; }
 }
 

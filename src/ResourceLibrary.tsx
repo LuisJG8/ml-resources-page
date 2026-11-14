@@ -1,11 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
 import { ArrowRight } from '@phosphor-icons/react/dist/csr/ArrowRight';
-import { ArrowUpRight } from '@phosphor-icons/react/dist/csr/ArrowUpRight';
 import { MagnifyingGlass } from '@phosphor-icons/react/dist/csr/MagnifyingGlass';
 import type { CategoryFilter, ResourceGroup } from './resources.ts';
 import { resourceCategories } from './resources.ts';
 import { chooseResourceIds, filterLibraryResources, resourceLibraryHref } from './resource-library-state.ts';
-import { ProgressiveImage } from './ProgressiveImage.tsx';
+import { CertificationGallery } from './CertificationGallery.tsx';
+import { ResourceCard } from './ResourceCard.tsx';
 
 interface ResourceLibraryProps {
   initialGroup?: ResourceGroup;
@@ -57,13 +57,9 @@ export default function ResourceLibrary({ initialGroup = 'All resources', initia
     <div id="resource-results" className="library-results" tabIndex={-1}>
       {sections.length ? sections.map(section => <section key={section.id} className="resource-category" aria-labelledby={`category-${section.id}`}>
         <h2 data-reveal="" id={`category-${section.id}`}>{section.label}<span>{section.resources.length}</span></h2>
-        {section.resources.map(item => <a data-reveal="" key={item.id} className="library-resource" href={item.url} target="_blank" rel="noopener noreferrer">
-          <div><span className="resource-meta">{item.format}{item.access && <span className="resource-access">{item.access}</span>}</span><h3>{item.title}</h3><p>{item.description}</p></div>
-          <span className="library-resource-preview" aria-hidden="true">
-            <ProgressiveImage data-reveal={undefined} className="resource-thumbnail" src={item.image} width="240" height="176" alt="" />
-            <ArrowUpRight />
-          </span><span className="sr-only">Opens in a new tab</span>
-        </a>)}
+        {section.id === 'certifications' ? <CertificationGallery resources={section.resources} /> : <div className="resource-grid resource-category-grid">
+          {section.resources.map(resource => <ResourceCard resource={resource} key={resource.id} />)}
+        </div>}
       </section>) : <div data-reveal="" className="empty-state"><h3>No matching resources.</h3><p>Try a different search or category.</p><button className="more-link" onClick={clearFilters}>Show all resources <ArrowRight aria-hidden="true" /></button></div>}
     </div>
   </>;

@@ -23,13 +23,13 @@ describe('Choose for me button', () => {
   it('clicks the real button and limits rendered cards to three per format', async () => {
     const user = userEvent.setup();
     render(<ResourceLibrary />);
-    expect(resultLinks()).toHaveLength(19);
+    expect(resultLinks()).toHaveLength(52);
     const button = chooseButton();
     await user.click(button);
 
-    expect(resultLinks()).toHaveLength(14);
-    expect(new Set(resultUrls()).size).toBe(14);
-    expect(screen.getByRole('status').textContent).toContain('14 picks from 19 matches');
+    expect(resultLinks()).toHaveLength(15);
+    expect(new Set(resultUrls()).size).toBe(15);
+    expect(screen.getByRole('status').textContent).toContain('15 picks from 52 matches');
     expect(document.activeElement).toBe(button);
     expect(button.textContent).toBe('Choose again');
     expect(screen.getByText('Up to 3 per category. Categories with 3 or fewer matches keep all their resources.')).toBeTruthy();
@@ -44,7 +44,7 @@ describe('Choose for me button', () => {
 
   it('redraws actual cards on another click and announces each selection', async () => {
     const user = userEvent.setup();
-    render(<ResourceLibrary initialCategory="tutorials" />);
+    render(<ResourceLibrary initialCategory="books" />);
     const random = vi.spyOn(Math, 'random').mockReturnValue(0);
     await user.click(chooseButton());
     const first = resultUrls();
@@ -59,7 +59,7 @@ describe('Choose for me button', () => {
 
   it('respects combined filters and restores all matches without changing the URL', async () => {
     const user = userEvent.setup();
-    const filters = { group: 'Modeling', query: 'model', category: 'tutorials' } as const;
+    const filters = { group: 'Modeling', query: 'model', category: 'books' } as const;
     render(<ResourceLibrary initialGroup={filters.group} initialQuery={filters.query} initialCategory={filters.category} />);
     const expected = filterLibraryResources(filters).map(resource => resource.url);
     const url = resourceLibraryHref(filters.group, filters.query, filters.category);
@@ -78,31 +78,31 @@ describe('Choose for me button', () => {
     const user = userEvent.setup();
     render(<ResourceLibrary />);
     await user.click(chooseButton());
-    await user.type(screen.getByRole('searchbox', { name: 'Search resources' }), 'pandas');
+    await user.type(screen.getByRole('searchbox', { name: 'Search resources' }), 'OpenIntro Statistics');
     expect(screen.getByRole('status').textContent).toBe('1 resource');
-    expect(resultUrls()).toEqual(filterLibraryResources({ query: 'pandas' }).map(resource => resource.url));
+    expect(resultUrls()).toEqual(filterLibraryResources({ query: 'OpenIntro Statistics' }).map(resource => resource.url));
     expect(chooseButton().textContent).toBe('Choose for me');
     await user.clear(screen.getByRole('searchbox'));
     await user.click(chooseButton());
-    await user.click(screen.getByRole('button', { name: 'Tutorials & docs' }));
-    expect(resultLinks()).toHaveLength(8);
-    expect(screen.getByRole('status').textContent).toBe('8 resources');
+    await user.click(screen.getByRole('button', { name: 'Books' }));
+    expect(resultLinks()).toHaveLength(15);
+    expect(screen.getByRole('status').textContent).toBe('15 resources');
     expect(screen.queryByRole('button', { name: 'Show all matches' })).toBeNull();
   });
 
   it('clears the shortlist when the stage reset is clicked while retaining other filters', async () => {
     const user = userEvent.setup();
-    render(<ResourceLibrary initialGroup="Modeling" initialQuery="model" initialCategory="tutorials" />);
+    render(<ResourceLibrary initialGroup="Modeling" initialQuery="model" initialCategory="books" />);
     await user.click(chooseButton());
     await user.click(screen.getByRole('button', { name: 'View all resources' }));
-    expect(resultUrls()).toEqual(filterLibraryResources({ query: 'model', category: 'tutorials' }).map(resource => resource.url));
-    expect(window.location.search).toBe('?category=tutorials&q=model');
+    expect(resultUrls()).toEqual(filterLibraryResources({ query: 'model', category: 'books' }).map(resource => resource.url));
+    expect(window.location.search).toBe('?category=books&q=model');
     expect(screen.queryByRole('button', { name: 'Show all matches' })).toBeNull();
   });
 
   it('keeps all cards in small categories and explains why they stay the same', async () => {
     const user = userEvent.setup();
-    render(<ResourceLibrary initialCategory="videos" />);
+    render(<ResourceLibrary initialCategory="videos" initialQuery="3Blue1Brown" />);
     const original = resultUrls();
     await user.click(chooseButton());
     expect(resultUrls()).toEqual(original);
@@ -130,7 +130,7 @@ describe('Choose for me button', () => {
     const button = chooseButton();
     expect(document.activeElement).toBe(button);
     await user.keyboard('{Enter}');
-    expect(resultLinks()).toHaveLength(14);
+    expect(resultLinks()).toHaveLength(15);
     await user.keyboard(' ');
     expect(screen.getByRole('status').textContent).toContain('Selection 2.');
     expect(document.activeElement).toBe(button);
@@ -138,12 +138,12 @@ describe('Choose for me button', () => {
 
   it('starts with the full filtered list on a fresh mount', async () => {
     const user = userEvent.setup();
-    const view = render(<ResourceLibrary initialCategory="tutorials" />);
+    const view = render(<ResourceLibrary initialCategory="books" />);
     await user.click(chooseButton());
     expect(resultLinks()).toHaveLength(3);
     view.unmount();
-    render(<ResourceLibrary initialCategory="tutorials" />);
-    expect(resultLinks()).toHaveLength(8);
+    render(<ResourceLibrary initialCategory="books" />);
+    expect(resultLinks()).toHaveLength(15);
     expect(chooseButton().textContent).toBe('Choose for me');
   });
 });

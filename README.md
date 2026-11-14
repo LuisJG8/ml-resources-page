@@ -43,9 +43,9 @@ The production output is `dist/`. `pnpm run preview` serves that build locally. 
 - `/`: homepage learning pipeline.
 - `/daata-sourcing`: original requested spelling; `/data-sourcing` is an alias.
 - `/data-cleaning`, `/modeling`, `/production`: detailed study pages.
-- `/resources`: resource library grouped by Videos, Certifications, Books, Courses, Tutorials & docs, Interactive, and Datasets. Optional `category`, `stage`, and `q` query parameters preserve combined filters (for example `/resources?category=books`).
+- `/resources`: resource library grouped by Videos, Certifications, Books, Courses, and Interactive. Optional `category`, `stage`, and `q` query parameters preserve combined filters (for example `/resources?category=books`).
 
-Homepage resource links open the library page with the relevant stage scoped in the URL. Format categories and search are the library controls; the Learning stage dropdown has been removed. Resource metadata shows the format and any access label, without pipeline-stage labels such as Modeling or Data Sourcing. Scoped results offer a “View all resources” reset without adding a stage label to the count. Search, category, and stage scopes survive refreshes and can be shared through the URL. The certification entries link to official AWS and Microsoft pages and label paid exams. A separate curated homepage Resources preview remains planned.
+Homepage library links open the full catalog so every format is available on entry. Format categories and search are the library controls; the Learning stage dropdown has been removed. Resource metadata shows the format and any access label, without pipeline-stage labels such as Modeling or Data Sourcing. Scoped results offer a “View all resources” reset without adding a stage label to the count. Search, category, and stage scopes survive refreshes and can be shared through the URL. The certification entries link to official AWS, Microsoft Azure, Google Cloud, Databricks, and Snowflake pages. A separate curated homepage Resources preview remains planned.
 
 ## Progressive loading
 
@@ -66,3 +66,10 @@ The original hosted website and source checkout remain intact as a backup. Histo
 ## TypeScript checks
 
 `pnpm run typecheck` checks the app, both test suites, and the Vite/Vitest configs without emitting JavaScript. `pnpm run build` includes this check before bundling. Utility tests run directly through Node 24’s TypeScript support; React component tests use Vitest and jsdom. Keep relative TypeScript imports explicit so both the browser build and Node test runner resolve the same modules.
+
+
+## Resource curation
+
+The library contains 52 curated resources: 7 video channels/series, 12 cloud and data-platform certifications, 15 books, 9 courses, and 9 interactive resources. Books cover every pipeline stage and include statistics foundations; An Introduction to Statistical Learning remains included. Creator, university, publisher, and vendor sources are recorded in [the research notes](docs/resource-research.md). The library omits documentation and dataset categories; existing homepage and study-page references remain available through `src/study-resources.ts`. Legacy category URLs fall back to all formats without clearing the remaining filters.
+
+All resource formats use the same image-first card gallery with consistent 200px artwork, centered titles, and a responsive three/two/one-column grid. Certifications retain provider headings for AWS, Microsoft Azure, Google Cloud, Databricks, and Snowflake. Descriptions remain searchable; access information remains accessible to screen readers. Filters and shortlists update the displayed cards and provider groups.
