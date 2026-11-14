@@ -38,7 +38,7 @@ function CustomerCell({ record, field, cleaned }: { record: CustomerRecord; fiel
 function CustomerDataset({ records, cleaned = false }: { records: readonly CustomerRecord[]; cleaned?: boolean }) {
   return <div className={`customer-dataset${cleaned ? ' customer-dataset--cleaned' : ''}`}>
     <table>
-      <caption>customers <span>{cleaned && <Check weight="bold" aria-hidden="true" />}{cleaned ? 'Cleaned' : 'Dirty'}</span></caption>
+      <caption className="sr-only">{cleaned ? 'Cleaned customers' : 'Dirty customers'}</caption>
       <thead><tr><th scope="col">ID</th><th scope="col">Age</th><th scope="col">City</th></tr></thead>
       <tbody>{records.map((record, index) => <tr key={`${record.id}-${index}`} className={record.duplicate ? 'customer-duplicate' : undefined}>
         <td>{record.id}{record.duplicate && <span className="sr-only"> (duplicate)</span>}</td>

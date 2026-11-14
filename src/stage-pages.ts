@@ -33,7 +33,7 @@ export const stagePages: readonly StagePageData[] = [
   },
   {
     id: 'data-cleaning', path: '/data-cleaning', number: '02', title: 'Data Cleaning',
-    summary: 'Data cleaning often takes the most time. Use applied statistics, including mean, median, mode, and imputation, to fix data issues and prepare the dataset for your model.',
+    summary: 'Data cleaning often takes the most time and effort. In this step you will use applied statistics to clean the data. This is the most important part of the ML pipeline, without clean data, the model will not be able to predict accurately. Garbage in, garbage out.',
     art: '/assets/scikit-learn.svg', artWidth: 232, artHeight: 124, artAlt: 'scikit-learn',
     topics: [
       { title: 'Understand the table', text: 'Use pandas to inspect rows, data types, and summary statistics. Look for missing values, duplicate records, inconsistent labels, and values that do not make sense for the field.' },

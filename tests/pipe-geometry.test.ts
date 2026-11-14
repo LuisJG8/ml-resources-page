@@ -1,37 +1,46 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { desktopPipeGeometry, extendedY, PIPE_FINISH_START, PIPE_FINISH_END, PIPE_FINISH_BANDS } from '../src/pipe-geometry.ts';
+import { desktopPipeGeometry, extendedY, croppedY, PIPE_ENTRY_CROP, PIPE_FINISH_START, PIPE_FINISH_END, PIPE_FINISH_BANDS } from '../src/pipe-geometry.ts';
 
 const near = (actual: number, expected: number) => assert.ok(Math.abs(actual - expected) < 1e-8, `${actual} should equal ${expected}`);
 
-test('cleaning gains 200px of study space while the other pipe runs stay intact', () => {
+test('the shorter entry preserves the longer study bays and straight finish', () => {
   // The responsive desktop artwork is capped at 896 CSS pixels.
   for (const scale of [320 / 941, 680 / 941, 896 / 941]) {
     const { extras } = desktopPipeGeometry(scale);
-    assert.ok(extras.every(extra => extra > 0), 'raster extensions remain positive');
-    near((extendedY(341, extras) - extendedY(-36, extras)) * scale, 377 * scale + 50);
+    assert.equal(extras[0], 0, 'the former 50px entry extension is removed');
+    assert.ok(extras.slice(1).every(extra => extra > 0), 'study bay extensions remain positive');
+    near((extendedY(341, extras) - extendedY(-36, extras)) * scale, 217 * scale);
     near((extendedY(808, extras) - extendedY(545, extras)) * scale, 263 * scale + 200);
     near((extendedY(1194, extras) - extendedY(1012, extras)) * scale, 263 * scale + 400);
     near(((extendedY(1296, extras) - extendedY(910, extras)) - (extendedY(910, extras) - extendedY(443, extras))) * scale, 200);
     near((extendedY(1782, extras) - extendedY(1398, extras)) * scale, 384 * scale + 100);
-    near((extendedY(1296, extras) - 1296) * scale, 650 + 81 * scale);
-    near((extendedY(1672, extras) - 1672) * scale, 750 + 81 * scale);
-    near((extendedY(1884, extras) - 1884) * scale, 750 + 81 * scale);
+    near((extendedY(1296, extras) - 1296) * scale, 600 - 79 * scale);
+    near((extendedY(1672, extras) - 1672) * scale, 700 - 79 * scale);
+    near((extendedY(1884, extras) - 1884) * scale, 700 - 79 * scale);
   }
+});
+
+test('the entry crop joins straight glass and keeps the upper collar and bend aligned', () => {
+  assert.deepEqual(PIPE_ENTRY_CROP, [110, 270]);
+  assert.equal(croppedY(110), croppedY(270), 'the cropped slices meet with no gap');
+  assert.equal(croppedY(72), 72, 'the first collar stays fixed');
+  assert.ok(!desktopPipeGeometry(896 / 941).couplings.some(([left, top]) => left === 31 && top === 133), 'the removed lower entry collar no longer hides packets');
+  assert.equal(croppedY(443) - croppedY(341), 102, 'the entry bend retains its radius');
 });
 
 test('coupling masks follow the extended artwork without changing band size', () => {
   const scale = 896 / 941;
   const { couplings } = desktopPipeGeometry(scale);
   assert.deepEqual(couplings[0], [31, 72, 78, 20]);
-  near((couplings[2][1] - 409) * scale, 50);
-  assert.deepEqual(couplings[2].slice(2), [22, 75]);
-  near((couplings[3][1] - 664) * scale, 250);
-  near((couplings[5][1] - 1077) * scale, 250);
-  near((couplings[6][1] - 1255) * scale, 650 + 81 * scale);
-  near((couplings[8][1] - PIPE_FINISH_START) * scale, 750 + 81 * scale);
-  assert.deepEqual(couplings[8].slice(2), [77, 20]);
-  assert.equal(couplings.length, 10, 'both finish collars occlude document packets');
+  near((couplings[1][1] - 409) * scale, -160 * scale);
+  assert.deepEqual(couplings[1].slice(2), [22, 75]);
+  near((couplings[2][1] - 664) * scale, 200 - 160 * scale);
+  near((couplings[4][1] - 1077) * scale, 200 - 160 * scale);
+  near((couplings[5][1] - 1255) * scale, 600 - 79 * scale);
+  near((couplings[7][1] - PIPE_FINISH_START) * scale, 700 - 79 * scale);
+  assert.deepEqual(couplings[7].slice(2), [77, 20]);
+  assert.equal(couplings.length, 9, 'only the lower entry collar is removed; both finish collars remain');
 });
 
 test('the final packet run continues straight down to the page bottom', () => {

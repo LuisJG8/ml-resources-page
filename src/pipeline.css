@@ -2,12 +2,12 @@
   position: absolute;
   inset: 0 auto auto 0;
   width: 100%;
-  --pipe-extra-0: 52.511160714;
+  --pipe-extra-0: 0;
   --pipe-extra-1: 210.044642857;
   --pipe-extra-2: 501.089285714;
   --pipe-extra-3: 105.022321428;
   --pipe-total-extra: calc(var(--pipe-extra-0) + var(--pipe-extra-1) + var(--pipe-extra-2) + var(--pipe-extra-3));
-  height: calc(2203px * var(--pipe-scale) + 750px);
+  height: calc(2043px * var(--pipe-scale) + 700px);
   z-index: -1;
   pointer-events: none;
   user-select: none;
@@ -18,7 +18,7 @@
   position: absolute;
   inset: 0 auto auto 0;
   width: 941px;
-  height: calc(2122px + var(--pipe-total-extra) * 1px);
+  height: calc(1962px + var(--pipe-total-extra) * 1px);
   transform-origin: top left;
   transform: scale(var(--pipe-scale, 1));
 }
@@ -27,7 +27,7 @@
   position: absolute;
   inset: 0;
   width: 941px;
-  height: calc(1672px + var(--pipe-total-extra) * 1px);
+  height: calc(1512px + var(--pipe-total-extra) * 1px);
   z-index: 2;
   opacity: .52;
 }
@@ -37,7 +37,7 @@
 .pipe-slice { position: absolute; left: 0; width: 941px; overflow: hidden; }
 .pipe-slice img { position: absolute; left: 0; width: 941px; height: 1672px; max-width: none; display: block; }
 
-.desktop-pipe-end { position: absolute; top: calc(1672px + var(--pipe-total-extra) * 1px); left: 0; width: 941px; height: 450px; overflow: hidden; z-index: 2; opacity: .52; }
+.desktop-pipe-end { position: absolute; top: calc(1512px + var(--pipe-total-extra) * 1px); left: 0; width: 941px; height: 450px; overflow: hidden; z-index: 2; opacity: .52; }
 .desktop-pipe-end > div { position: absolute; overflow: hidden; }
 .desktop-pipe-end img { position: absolute; width: 941px; height: 1672px; max-width: none; display: block; }
 /* Extend a straight raster row at its native width, preserving the glass edges. */

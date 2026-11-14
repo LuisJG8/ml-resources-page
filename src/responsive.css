@@ -36,21 +36,20 @@ body { min-width: 0; }
   .station, .production-copy { left: calc(100% * 39 / 941); }
   .page {
     --pipe-scale: .9521785335;
-    height: calc(1753px * var(--pipe-scale) + 750px);
+    height: calc(1593px * var(--pipe-scale) + 700px);
     aspect-ratio: auto;
   }
   .hero { top: calc(123.728px * var(--pipe-scale)); }
-  .foundations { top: calc(518.32px * var(--pipe-scale) + 50px); }
+  .foundations { top: calc(358.32px * var(--pipe-scale)); }
   .models {
-    /* Midpoint of the extended horizontal runs at native y910 and y1296.
-       Translate by the actual content height to keep both clearances equal. */
-    top: calc(1143.5px * var(--pipe-scale) + 450px);
+    /* Place the whole column 104px above the bay midpoint. */
+    top: calc(983.5px * var(--pipe-scale) + 296px);
     transform: translate(-50%, -50%);
     left: 50%;
     right: auto;
     width: 57.6%;
   }
-  .practice { top: calc(1480.464px * var(--pipe-scale) + 630px); }
+  .practice { top: calc(1320.464px * var(--pipe-scale) + 580px); }
   .production-copy { top: 10%; }
   .models .station-intro { margin-top: 18px; }
   .models .resource-link { padding-bottom: 22px; }
