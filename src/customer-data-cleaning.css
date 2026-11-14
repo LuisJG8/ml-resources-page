@@ -2,17 +2,13 @@
 .customer-cleaning-comparison { display: grid; grid-template-columns: minmax(0, 1fr) 28px minmax(0, 1fr); align-items: start; gap: 12px; }
 .customer-dataset { min-width: 0; overflow: hidden; border: 1px solid var(--line); border-radius: 8px; background: #fff; }
 .customer-dataset table { width: 100%; border-collapse: collapse; font-size: 12px; line-height: 1.5; text-align: left; font-variant-numeric: tabular-nums; }
-.customer-dataset caption { padding: 9px 10px; border-bottom: 1px solid var(--line); font-size: 11px; font-weight: 600; text-align: left; }
-.customer-dataset caption span { float: right; display: inline-flex; align-items: center; gap: 4px; color: var(--blue); }
-.customer-dataset caption svg { width: 12px; height: 12px; }
 .customer-dataset th { padding: 7px 10px; color: var(--muted); background: #f8fafc; font-size: 10px; font-weight: 600; }
 .customer-dataset td { padding: 7px 10px; border-top: 1px solid #edf0f5; white-space: nowrap; }
-.customer-duplicate { background: #f0f4fa; }
-.customer-null { color: var(--blue); font-size: 10px; font-weight: 600; }
-.customer-dataset--cleaned { border-color: #9ab2ff; }
-.customer-dataset--cleaned caption { background: #edf3ff; }
-.customer-dataset .customer-issue { text-decoration: underline dotted; text-underline-offset: 4px; }
-.customer-dataset .customer-corrected { color: var(--blue); background: #edf3ff; font-weight: 600; }
+.customer-duplicate { color: #b42318; background: #fff1f0; }
+.customer-null { color: inherit; font-size: 10px; font-weight: 600; }
+.customer-dataset--cleaned { border-color: #9bcbaa; }
+.customer-dataset .customer-issue { color: #b42318; background: #fff1f0; text-decoration: underline dotted; text-underline-offset: 4px; }
+.customer-dataset .customer-corrected { color: #166534; background: #edf9f0; font-weight: 600; }
 .customer-corrected svg { display: inline-block; width: 10px; height: 10px; margin-left: 4px; vertical-align: -1px; }
 .customer-cleaning-arrow { align-self: center; width: 28px; height: 28px; color: var(--blue); }
 

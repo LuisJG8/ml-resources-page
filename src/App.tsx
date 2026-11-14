@@ -11,6 +11,7 @@ import { ProgressiveImage } from './ProgressiveImage.tsx';
 import { useScrollReveal } from './useScrollReveal.ts';
 import { SqlEditor } from './SqlEditor.tsx';
 import { CustomerDataCleaning } from './CustomerDataCleaning.tsx';
+import { GarbageFlow } from './GarbageFlow.tsx';
 import { isResourcesPath } from './resource-library-state.ts';
 import './pipeline-introduction.css';
 
@@ -42,7 +43,7 @@ function LearningPath() {
       <Pipeline paused={flowPaused} />
       <main aria-label="Classical machine learning resources">
         <header className="pipeline-introduction">
-          <h1 data-reveal="">The <span>machine learning pipeline</span> 🤖</h1>
+          <h1 data-reveal="">The <span>ML pipeline</span></h1>
         </header>
         <section className="station foundations" id="data-sourcing" aria-labelledby="data-sourcing-title">
           <h2 id="data-sourcing-title" data-reveal=""><StageHeadingLink stageId="data-sourcing" /></h2>
@@ -57,6 +58,7 @@ function LearningPath() {
         <section className="station models" id="data-cleaning" aria-labelledby="data-cleaning-title">
           <h2 id="data-cleaning-title" data-reveal=""><StageHeadingLink stageId="data-cleaning" /></h2>
           <StageDescription stageId="data-cleaning" />
+          <GarbageFlow />
           <div className="station-content">
             <CustomerDataCleaning />
           </div>

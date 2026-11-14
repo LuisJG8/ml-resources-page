@@ -1,5 +1,10 @@
 export const PIPE_CUTS = [320, 600, 1140, 1540];
-export const PIPE_EXTENSIONS_PX = [50, 200, 400, 100];
+export const PIPE_EXTENSIONS_PX = [0, 200, 400, 100];
+// Remove plain entry glass between the original collar positions.
+export const PIPE_ENTRY_CROP = [110, 270] as const;
+export function croppedY(y: number): number {
+  return y - Math.max(0, Math.min(y, PIPE_ENTRY_CROP[1]) - PIPE_ENTRY_CROP[0]);
+}
 // Cleaning's original straight is 81 native pixels shorter than sourcing.
 // Retain that compensation beneath Cleaning's additional 200px of study space.
 const PIPE_NATIVE_ADJUSTMENTS = [0, 0, 81, 0];
@@ -10,7 +15,7 @@ export const PIPE_FINISH_BANDS = [PIPE_FINISH_START, PIPE_FINISH_END - 20];
 export type Coupling = [left: number, top: number, width: number, height: number];
 
 const COUPLINGS: Coupling[] = [
-  [31, 72, 78, 20], [31, 293, 78, 20],
+  [31, 72, 78, 20],
   [445, 409, 22, 75], [835, 664, 77, 20],
   [445, 870, 22, 77], [24, 1077, 76, 21],
   [445, 1255, 22, 77], [833, 1464, 78, 21],
@@ -18,7 +23,7 @@ const COUPLINGS: Coupling[] = [
 ];
 
 export function extendedY(y: number, extras: readonly number[]): number {
-  return y + PIPE_CUTS.reduce((offset, cut, index) => offset + (y >= cut ? extras[index] : 0), 0);
+  return croppedY(y) + PIPE_CUTS.reduce((offset, cut, index) => offset + (y >= cut ? extras[index] : 0), 0);
 }
 
 export function desktopPipeGeometry(scale: number) {

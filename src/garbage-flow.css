@@ -1,0 +1,38 @@
+.garbage-flow {
+  --garbage-progress: 0;
+  position: relative;
+  width: min(100%, 300px);
+  height: 64px;
+  margin-top: 18px;
+  isolation: isolate;
+}
+.garbage-flow > span {
+  position: absolute;
+  top: 50%;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 48px;
+  font-size: 32px;
+  line-height: 1;
+  transform: translateY(-50%);
+}
+.garbage-flow__garbage { left: calc(var(--garbage-progress) * (100% - 40px)); }
+.garbage-flow > .garbage-flow__robot {
+  left: 50%;
+  width: 64px;
+  height: 64px;
+  font-size: 38px;
+  background: #f8fafc;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+.garbage-flow > .garbage-flow__static-output { display: none; right: 0; }
+
+.garbage-flow[data-motion='reduced'] .garbage-flow__garbage { left: 0; }
+.garbage-flow[data-motion='reduced'] .garbage-flow__static-output { display: grid; }
+
+@media (prefers-reduced-motion: reduce), print {
+  .garbage-flow .garbage-flow__garbage { left: 0; }
+  .garbage-flow > .garbage-flow__static-output { display: grid; }
+}
