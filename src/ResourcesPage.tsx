@@ -11,7 +11,7 @@ export default function ResourcesPage() {
 
   useEffect(() => {
     document.title = 'Resources — Pipeline';
-    document.querySelector<HTMLMetaElement>('meta[name="description"]')?.setAttribute('content', 'Browse machine learning videos, certifications, books, courses, tutorials, interactive lessons, and datasets. Search topics and filter by category.');
+    document.querySelector<HTMLMetaElement>('meta[name="description"]')?.setAttribute('content', 'Browse machine learning videos, certifications, books, courses, and interactive lessons. Search topics and filter by category.');
   }, []);
 
   return <>

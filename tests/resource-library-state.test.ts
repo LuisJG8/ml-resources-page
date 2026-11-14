@@ -41,10 +41,10 @@ test('every resource belongs to one populated format category', () => {
 });
 
 test('category, learning stage, and search apply together', () => {
-  assert.deepEqual(filterLibraryResources({ category: 'books', group: 'Modeling' }).map(resource => resource.id), ['isl']);
-  assert.deepEqual(filterLibraryResources({ category: 'videos', group: 'Production' }), []);
+  assert.deepEqual(filterLibraryResources({ category: 'books', group: 'Modeling', query: 'An Introduction to Statistical Learning' }).map(resource => resource.id), ['isl']);
+  assert.deepEqual(filterLibraryResources({ category: 'videos', group: 'Production' }).map(resource => resource.id), ['datatalks']);
   assert.deepEqual(filterLibraryResources({ category: 'certifications', group: 'Data Sourcing', query: ' Azure ' }).map(resource => resource.id), ['azure-data-fundamentals']);
-  assert.deepEqual(filterLibraryResources({ category: 'videos', query: 'linear' }).map(resource => resource.id), ['linear']);
+  assert.deepEqual(filterLibraryResources({ category: 'videos', query: '3Blue1Brown' }).map(resource => resource.id), ['linear']);
   assert.equal(filterLibraryResources().length, resources.length);
 });
 
@@ -61,7 +61,7 @@ test('choosing limits every format to three distinct resources and retains displ
   const matches = filterLibraryResources();
   const ids = chooseResourceIds(matches, () => 0.75);
   const chosen = matches.filter(resource => ids.includes(resource.id));
-  assert.equal(ids.length, 14);
+  assert.equal(ids.length, 15);
   assert.equal(new Set(ids).size, ids.length);
   assert.deepEqual(ids, chosen.map(resource => resource.id));
   for (const category of resourceCategories) {
@@ -73,7 +73,7 @@ test('choosing limits every format to three distinct resources and retains displ
 test('choosing only uses current matches, including combined stage, format, and query filters', () => {
   for (const filters of [
     { group: 'Data Cleaning' },
-    { group: 'Modeling', category: 'tutorials', query: 'model' },
+    { group: 'Modeling', category: 'books', query: 'model' },
     { category: 'certifications', group: 'Data Sourcing', query: 'Azure' },
   ]) {
     const matches = filterLibraryResources(filters);
@@ -87,18 +87,27 @@ test('choosing only uses current matches, including combined stage, format, and 
 test('empty and small categories keep all available matches without requesting randomness', () => {
   const unexpectedRandom = () => assert.fail('small categories do not need sampling');
   assert.deepEqual(chooseResourceIds([], unexpectedRandom), []);
-  for (const category of ['videos', 'certifications', 'interactive']) {
-    const matches = filterLibraryResources({ category });
+  for (const count of [1, 2, 3]) {
+    const matches = resources.filter(resource => resource.category === 'books').slice(0, count);
     assert.deepEqual(chooseResourceIds(matches, unexpectedRandom), matches.map(resource => resource.id));
   }
 });
 
 test('random draws can change picks without mutating input resources or their ordering', () => {
-  const matches = Object.freeze(filterLibraryResources({ category: 'tutorials' }).map(resource => Object.freeze({ ...resource })));
+  const matches = Object.freeze(filterLibraryResources({ category: 'books' }).map(resource => Object.freeze({ ...resource })));
   const before = JSON.stringify(matches);
   const first = chooseResourceIds(matches, () => 0);
   const last = chooseResourceIds(matches, () => 0.999999);
   assert.deepEqual(first, matches.slice(0, 3).map(resource => resource.id));
   assert.notDeepEqual(last, first);
   assert.equal(JSON.stringify(matches), before);
+});
+
+
+test('retired library formats fall back to all while preserving search and stage', () => {
+  for (const category of ['tutorials', 'datasets']) {
+    assert.deepEqual(readResourceFilters(`?category=${category}&stage=data-cleaning&q=statistics`), {
+      group: 'Data Cleaning', query: 'statistics', category: 'all',
+    });
+  }
 });

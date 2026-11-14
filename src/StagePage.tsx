@@ -4,7 +4,7 @@ import { ArrowRight } from '@phosphor-icons/react/dist/csr/ArrowRight';
 import { ArrowUpRight } from '@phosphor-icons/react/dist/csr/ArrowUpRight';
 import type { StagePageData } from './stage-pages.ts';
 import { stagePages } from './stage-pages.ts';
-import { resources } from './resources.ts';
+import { studyResources as resources } from './study-resources.ts';
 import './stage-pages.css';
 import { useScrollReveal } from './useScrollReveal.ts';
 

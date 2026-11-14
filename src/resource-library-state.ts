@@ -1,4 +1,4 @@
-import { stages, resources, resourceCategories } from './resources.ts';
+import { stages, resources, resourceCategories, certificationProviders } from './resources.ts';
 import type { CategoryFilter, Resource, ResourceCategory, ResourceGroup } from './resources.ts';
 
 export interface ResourceFilters {
@@ -35,9 +35,10 @@ export function filterLibraryResources({ group = 'All resources', query = '', ca
   const search = query.toLowerCase().trim();
   return resources.filter(item => {
     const categoryLabel = resourceCategories.find(candidate => candidate.id === item.category)?.label || '';
+    const provider = item.category === 'certifications' ? certificationProviders.find(provider => provider.id === item.provider)?.name || '' : '';
     return (group === 'All resources' || item.group === group)
       && (category === 'all' || item.category === category)
-      && `${item.title} ${item.description} ${item.format} ${item.group} ${categoryLabel}`.toLowerCase().includes(search);
+      && `${item.title} ${item.description} ${item.format} ${item.group} ${categoryLabel} ${provider}`.toLowerCase().includes(search);
   });
 }
 
