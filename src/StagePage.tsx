@@ -7,6 +7,7 @@ import { stagePages } from './stage-pages.ts';
 import { studyResources as resources } from './study-resources.ts';
 import './stage-pages.css';
 import { useScrollReveal } from './useScrollReveal.ts';
+import { StageDescription } from './StageDescription.tsx';
 
 export function StagePage({ stage }: { stage: StagePageData }) {
   useScrollReveal();
@@ -33,7 +34,7 @@ export function StagePage({ stage }: { stage: StagePageData }) {
         <div>
           <p data-reveal="" className="detail-kicker">STAGE {stage.number} / 04</p>
           <h1 data-reveal="">{stage.title}</h1>
-          <p data-reveal="" className="detail-summary">{stage.summary}</p>
+          <StageDescription stageId={stage.id} className="detail-summary" />
         </div>
         {stage.art && <img data-reveal="" className="detail-art" src={stage.art} alt={stage.artAlt} width={stage.artWidth} height={stage.artHeight} decoding="async" />}
       </div>

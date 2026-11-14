@@ -50,7 +50,7 @@ The user requires four main sections, in this order: Data Sourcing, Data Cleanin
 
 Align all four homepage section headings and descriptions to the left edge of the desktop pipe entry, not an inset beside it. The user explicitly clarified that “y axis” means moving the copy left. Desktop sections and Production use native x39 of the 941px pipe canvas (about 4.145%); this replaces the earlier 10.3% inset. Data Cleaning is the subsequent exception described below. Compact layouts keep their shared 44px content inset so the narrow rail does not cross readable text. Preserve the pipe geometry and vertical bay positions.
 
-Keep section descriptions short and simple, shared between the homepage and detail pages. Sourcing covers database/data-source extraction with SQL and accuracy/completeness checks. Cleaning emphasizes the time spent preparing data and applied statistics such as mean, median, mode, and imputation. Modeling explains how established algorithms and libraries simplify training and comparison. Production covers live predictions and ongoing accuracy/performance monitoring.
+Keep section descriptions short and simple, shared between the homepage and detail pages. Use the user’s three-paragraph Data Sourcing description on both the homepage and study page: “First step is to collect data from a source, often a relational database. Use SQL to connect to the database and extract the data you need.” followed by “Often you are going to be using SQL DML (Data Manipulation Language) statements. The four main DML statements are SELECT, INSERT, UPDATE and DELETE.” Add the final paragraph exactly: “The data would be on a raw state. In the real world the data is going to be dirty and we would clean it on the next step”. Preserve the paragraph breaks. Cleaning emphasizes the time spent preparing data and applied statistics such as mean, median, mode, and imputation. Modeling explains how established algorithms and libraries simplify training and comparison. Production covers live predictions and ongoing accuracy/performance monitoring.
 
 ## Dedicated section pages
 
@@ -64,7 +64,7 @@ The desktop finish reuses a straight raster row from `glass-pipeline.png` at the
 
 ## Homepage introduction
 
-Show exactly: `the machine learning pipeline` with no trailing punctuation. Highlight `machine learning pipeline` in the site's blue (#0744ff); keep `the` in the dark foreground. This is the homepage's single h1. Position it beside the pipe entry on desktop and before Data Sourcing in normal flow on compact screens. LearningViewport now shows the complete entry instead of trimming the old 280-native-pixel introduction area. Preserve the current pipe geometry, taller Data Cleaning bay, animation, and masks. Do not restore the older headline, From raw data to real predictions copy, subtitle, or CTA.
+Show exactly: `The machine learning pipeline 🤖` with a capital T and the native robot emoji at the end, with no trailing punctuation. Highlight `machine learning pipeline` in the site's blue (#0744ff); keep `The` in the dark foreground. This decorative title emoji is allowed; keep the retired Production robot illustration and classifier demo removed. This is the homepage's single h1. Position it beside the pipe entry on desktop and before Data Sourcing in normal flow on compact screens. LearningViewport now shows the complete entry instead of trimming the old 280-native-pixel introduction area. Preserve the current pipe geometry, taller Data Cleaning bay, animation, and masks. Do not restore the older headline, From raw data to real predictions copy, subtitle, or CTA.
 
 ## Site-wide scroll fade-ins
 
@@ -141,4 +141,14 @@ Use the certification gallery’s image-first design throughout Videos, Books, C
 
 ## Centered Data Cleaning bay
 
-Center the complete desktop Data Cleaning section vertically between its upper and lower horizontal pipe runs. Position its midpoint at `1143.5 * scale + 450px` (the midpoint of extended native y910 and y1296) and translate by half its actual content height. This replaces the previous fixed top position; copy, five-row comparison, and resource links move together. Preserve the existing horizontal position, left-aligned content, 20px clearance, column width, and pipe geometry. Compact layouts retain normal document flow with no centering transform.
+Center the complete desktop Data Cleaning section vertically between its upper and lower horizontal pipe runs. Position its midpoint at `1143.5 * scale + 450px` (the midpoint of extended native y910 and y1296) and use `left: 50%` with `translate(-50%, -50%)` to center the whole column horizontally as well. This replaces the previous fixed top position and desktop 20px left clearance; copy, five-row comparison, and resource links move together. Preserve left-aligned content, the 57.6% column width, and pipe geometry. Compact layouts retain normal document flow with no centering transform.
+
+The user subsequently removed the two homepage resource links beneath the Data Cleaning comparison: pandas getting started and Preprocessing with scikit-learn. End this homepage section after the tables; keep those resources on the dedicated study page. Preserve the section's centering and pipe geometry.
+
+The user also removed the entire homepage Modeling preview beneath its description: the decision-tree illustration, scikit-learn resource link, and Browse all resources link. Keep the Modeling heading, description, and study-page destination. The Production resource-library link remains available.
+
+The user then requested XGBoost and LightGBM logos beneath the Modeling description. Use locally bundled official artwork in a compact two-column row, retaining natural proportions, progressive loading, and shared scroll reveals. Do not restore the removed decision tree or resource links.
+
+## Codex contribution attribution
+
+When Codex creates a pull request, include a short note in its description that it was created with Codex. When Codex merges a pull request, include a note in the merge commit message that Codex performed the merge on the user's behalf. Credit Codex-authored changes with `Co-authored-by: Codex <noreply@openai.com>` in commit messages. Keep attribution truthful about which actions Codex performed; GitHub actions still run through the authenticated user's account. Preserve existing author credits and do not rewrite published history solely to add attribution.

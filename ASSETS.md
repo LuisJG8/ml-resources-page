@@ -70,3 +70,10 @@ Each library resource has a small locally hosted thumbnail on the right of its t
 - `public/assets/resources/validation.webp`: https://scikit-learn.org/stable/_images/grid_search_cross_validation.png
 
 The pitfalls, model persistence, and getting-started entries reuse the bundled official `scikit-learn.svg` logo described above.
+
+## Modeling library logos
+
+- `public/assets/xgboost-logo.png`: official XGBoost wordmark from https://xgboost.ai/images/logo/xgboost-logo-trimmed.png, referenced by the official project's README. `xgboost-logo.webp` is a lossless display copy.
+- `public/assets/lightgbm-logo.svg`: official LightGBM artwork from https://github.com/lightgbm-org/LightGBM/blob/main/docs/logo/LightGBM_logo_black_text.svg, preserved as a vector.
+
+These logos identify the modeling libraries; their trademarks belong to their respective projects.

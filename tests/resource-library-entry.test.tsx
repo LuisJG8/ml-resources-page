@@ -8,7 +8,7 @@ afterEach(() => {
   vi.unstubAllGlobals();
 });
 
-it.each(['Modeling', 'Production'])('opens the full resource library from %s', async stage => {
+it.each(['Production'])('opens the full resource library from %s', async stage => {
   vi.stubGlobal('matchMedia', () => ({ matches: true, addEventListener() {}, removeEventListener() {} }));
   vi.stubGlobal('ResizeObserver', class { observe() {} disconnect() {} });
   window.history.replaceState(null, '', '/');
