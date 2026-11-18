@@ -25,6 +25,8 @@ Avoid stale credentials: Microsoft lists Azure Data Scientist Associate as retir
 
 ## Video channels
 
+Historical research only: the user removed the Videos category and its seven entries from the resource library.
+
 The website can link directly to channels or their creator-maintained video indexes. Do not publish volatile subscriber/view counts.
 
 | Channel | Why include it | Primary evidence |
@@ -110,7 +112,7 @@ Kaggle pages expose their course titles but render their lesson content in JavaS
 
 ## Integration decisions
 
-The visible library uses only Videos, Certifications, Books, Courses, and Interactive. Documentation and dataset references used by homepage and study pages live separately in `src/study-resources.ts`, preserving those existing destinations without reclassifying documentation as courses. Legacy `category=tutorials` and `category=datasets` URLs default to all formats while keeping query and stage filters. Selection remains up to three per format, so the full catalog draws 15 picks from 52 matches.
+The visible library uses only Certifications, Books, Courses, and Interactive. The user removed Videos and its seven channel entries. Documentation and dataset references used by homepage and study pages live separately in `src/study-resources.ts`, preserving those existing destinations without reclassifying documentation as courses. Legacy `category=tutorials`, `category=datasets`, and `category=videos` URLs default to all formats while keeping query and stage filters. Selection remains up to three per format, so the full catalog draws 12 picks from 45 matches.
 
 Retained learning sources: [An Introduction to Statistical Learning](https://www.statlearning.com/), [Google Machine Learning Crash Course](https://developers.google.com/machine-learning/crash-course), and [the scikit-learn MOOC](https://inria.github.io/scikit-learn-mooc/). Their original catalog entries and thumbnails remain intact.
 

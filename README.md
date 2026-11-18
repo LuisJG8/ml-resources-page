@@ -6,7 +6,7 @@ A visual guide to the classical machine learning pipeline, from collecting data 
 
 - **Four learning stages:** Data Sourcing, Data Cleaning, Modeling, and Production, each with a dedicated study page.
 - **Practical examples:** an editable SQL query and a comparison of dirty and cleaned customer data.
-- **52 curated resources:** videos, certifications, books, courses, and interactive lessons, including statistics foundations.
+- **45 curated resources:** certifications, books, courses, and interactive lessons, including statistics foundations.
 - **Choose for me:** search or filter the library, then get up to three picks per category. Choose again or show all matches at any time.
 
 Certifications are grouped by AWS, Microsoft Azure, Google Cloud, Databricks, and Snowflake.

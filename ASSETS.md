@@ -77,3 +77,7 @@ The pitfalls, model persistence, and getting-started entries reuse the bundled o
 - `public/assets/lightgbm-logo.svg`: official LightGBM artwork from https://github.com/lightgbm-org/LightGBM/blob/main/docs/logo/LightGBM_logo_black_text.svg, preserved as a vector.
 
 These logos identify the modeling libraries; their trademarks belong to their respective projects.
+
+## Production experiment tracking screenshot
+
+`public/assets/mlflow-tracking.png` is the user-selected 3834 × 1926 screenshot from [MLflow's Tracking documentation](https://mlflow.org/docs/latest/ml/tracking/), downloaded from [the original image](https://mlflow.org/docs/latest/assets/images/tracking-models-ui-0f88d40c517e103cdead462aab12781a.png). `mlflow-tracking.webp` is a 1400 × 703 display copy preserving the complete screenshot. The original artwork belongs to the MLflow project.
