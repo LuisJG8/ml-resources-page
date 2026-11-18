@@ -20,6 +20,15 @@
    and responsive.css. */
 .production-intro { color: var(--muted); font-size: 1.7cqw; line-height: 1.5; margin-top: 1.2cqw; }
 .production-footer .more-link { color: var(--blue); margin-top: 1.2cqw; }
+.production-tracking-image {
+  display: block;
+  width: 100%;
+  max-width: 440px;
+  height: auto;
+  margin-top: 20px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
 
 @media (max-width: 1023px) {
   .production-footer {

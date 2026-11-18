@@ -23,13 +23,13 @@ describe('Choose for me button', () => {
   it('clicks the real button and limits rendered cards to three per format', async () => {
     const user = userEvent.setup();
     render(<ResourceLibrary />);
-    expect(resultLinks()).toHaveLength(52);
+    expect(resultLinks()).toHaveLength(45);
     const button = chooseButton();
     await user.click(button);
 
-    expect(resultLinks()).toHaveLength(15);
-    expect(new Set(resultUrls()).size).toBe(15);
-    expect(screen.getByRole('status').textContent).toContain('15 picks from 52 matches');
+    expect(resultLinks()).toHaveLength(12);
+    expect(new Set(resultUrls()).size).toBe(12);
+    expect(screen.getByRole('status').textContent).toContain('12 picks from 45 matches');
     expect(document.activeElement).toBe(button);
     expect(button.textContent).toBe('Choose again');
     expect(screen.getByText('Up to 3 per category. Categories with 3 or fewer matches keep all their resources.')).toBeTruthy();
@@ -102,7 +102,7 @@ describe('Choose for me button', () => {
 
   it('keeps all cards in small categories and explains why they stay the same', async () => {
     const user = userEvent.setup();
-    render(<ResourceLibrary initialCategory="videos" initialQuery="3Blue1Brown" />);
+    render(<ResourceLibrary initialCategory="books" initialQuery="OpenIntro Statistics" />);
     const original = resultUrls();
     await user.click(chooseButton());
     expect(resultUrls()).toEqual(original);
@@ -130,7 +130,7 @@ describe('Choose for me button', () => {
     const button = chooseButton();
     expect(document.activeElement).toBe(button);
     await user.keyboard('{Enter}');
-    expect(resultLinks()).toHaveLength(15);
+    expect(resultLinks()).toHaveLength(12);
     await user.keyboard(' ');
     expect(screen.getByRole('status').textContent).toContain('Selection 2.');
     expect(document.activeElement).toBe(button);

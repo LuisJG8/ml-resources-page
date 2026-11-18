@@ -1,0 +1,16 @@
+.homepage-resources {
+  container-type: inline-size;
+  width: min(100%, 896px);
+  margin: 0 auto;
+  padding-bottom: 64px;
+  scroll-margin-top: 30px;
+}
+.homepage-resources h2 { margin-left: calc(100% * 39 / 941); }
+
+@media (max-width: 1023px) {
+  .homepage-resources {
+    width: min(100%, 680px);
+    padding: 24px clamp(18px, 4vw, 32px) 48px 44px;
+  }
+  .homepage-resources h2 { margin-left: 0; }
+}

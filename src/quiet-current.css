@@ -1,0 +1,173 @@
+/* Quiet Current: the selected visual direction, using the original assets. */
+:root {
+  --content-measure: 640px;
+  --section-heading-size: 3rem;
+  --section-copy-size: 1.375rem;
+  --surface: #fff;
+  --surface-subtle: #f3f6fb;
+  --surface-border: #dce3ed;
+  --surface-radius: 12px;
+  --space-sm: .75rem;
+  --space-md: 1.5rem;
+  --space-lg: 2rem;
+}
+
+.pipeline-introduction h1 { font-weight: 700; letter-spacing: -.045em; }
+:is(.station, .production-footer, .homepage-resources) h2 {
+  font-size: var(--section-heading-size);
+  font-weight: 750;
+  line-height: 1.16;
+  letter-spacing: -.045em;
+  white-space: normal;
+  text-wrap: balance;
+}
+.station-intro, .production-intro {
+  max-width: var(--content-measure);
+  margin-top: 16px;
+  color: var(--muted);
+  font-size: var(--section-copy-size);
+  line-height: 1.5;
+  letter-spacing: -.025em;
+  text-wrap: pretty;
+}
+.station-intro + .station-intro { margin-block-start: var(--space-sm); }
+.models .station-content { margin-block-start: var(--space-lg); }
+
+.sourcing-query {
+  max-width: var(--content-measure);
+  grid-template-columns: minmax(0, 376px) 40px 128px;
+  gap: 36px;
+  margin-top: 24px;
+}
+.sourcing-query .sql-editor { width: 100%; }
+.sourcing-query-arrow svg { width: 40px; height: 40px; }
+.sourcing-database svg { width: 128px; height: 152px; }
+.sql-editor { border-color: var(--surface-border); border-radius: var(--surface-radius); }
+.sql-editor-tab { padding: 10px 14px; background: var(--surface-subtle); font-size: .6875rem; }
+/* A fixed, scrollable editing viewport is intentional; ordinary text flows. */
+.sql-editor-body { padding: 14px 16px 18px; font-size: .9375rem; line-height: 1.65; height: calc(7 * 1.65em + 32px); }
+
+.customer-cleaning { max-width: var(--content-measure); }
+.customer-cleaning-comparison { grid-template-columns: minmax(0, 1fr) 32px minmax(0, 1fr); gap: 24px; }
+.customer-dataset { border-radius: 10px; }
+.customer-dataset:not(.customer-dataset--cleaned) { border-color: var(--surface-border); }
+.customer-dataset table { font-size: .96875rem; font-weight: 500; }
+.customer-dataset th { padding: 8px 12px; background: var(--surface-subtle); font-size: .84375rem; }
+.customer-dataset td { padding: 6px 12px; }
+.customer-null { font-size: .84375rem; }
+.customer-corrected svg { width: 12px; height: 12px; }
+.customer-cleaning-arrow { width: 32px; height: 32px; }
+
+.modeling-logos { max-width: var(--content-measure); gap: 40px; margin-top: 32px; }
+.modeling-logos img { height: 112px; }
+.production-tracking-image { max-width: var(--content-measure); margin-top: 24px; }
+.production-footer .more-link { margin-block-start: 1rem; font-size: 1.0625rem; line-height: 1.5; }
+.homepage-resources { padding-bottom: 48px; }
+.homepage-resources h2 { margin-left: 12%; }
+
+/* Keep the separate library and study pages in the same restrained system. */
+main.resources-page { padding-block-start: 40px; }
+.resources-page .library-controls { margin-block-start: var(--space-md); }
+.resources-page .library-controls .search, .resources-page .library-choose { min-block-size: 56px; border-radius: var(--surface-radius); }
+.resources-page .search { border-color: var(--surface-border); }
+.resources-page .search input { font-size: 1rem; }
+.resources-page .library-choose { font-size: .875rem; }
+.resources-page .filters { gap: .5rem; margin-block-start: 1rem; }
+.resources-page .filters button {
+  padding: .625rem 1rem;
+  border: 1px solid var(--surface-border);
+  border-radius: 999px;
+  background: var(--surface);
+  font-size: .8125rem;
+  line-height: 1.5;
+}
+.resources-page .filters button[aria-pressed="true"] { border-color: var(--blue); background: var(--blue); color: #fff; }
+.resources-page .filters button:hover:not([aria-pressed="true"]) { border-color: var(--blue); background: var(--surface-subtle); box-shadow: none; }
+.resources-page .library-toolbar { margin-block: var(--space-md) 2.5rem; }
+.resources-page .results-count, .resources-page .library-reset, .resources-page .library-selection-note { font-size: .8125rem; }
+.resources-page .resource-category + .resource-category { margin-top: 56px; }
+.resources-page .certification-provider + .certification-provider { margin-top: 48px; }
+.resources-page .resource-category > h2 { padding-block-end: 1rem; border-color: var(--surface-border); font-size: 1.75rem; }
+.resources-page .resource-category > h2 > span { height: auto; min-block-size: 1.5rem; font-size: .75rem; }
+.resources-page .certification-provider > h3 { margin-block-end: var(--space-md); font-size: 1.25rem; }
+.resources-page .resource-grid { gap: var(--space-md); }
+.resources-page .resource-card { gap: var(--space-md); padding: 28px 20px; border-color: var(--surface-border); border-radius: var(--surface-radius); }
+.resources-page .resource-card:hover { border-color: var(--blue); box-shadow: 0 8px 24px rgb(7 68 255 / .06); }
+.resources-page .resource-card-title { font-size: 1rem; line-height: 1.55; text-wrap: balance; }
+.resources-page .detail-back, .detail-page .detail-back { font-size: .875rem; }
+.detail-page .detail-hero h1 { font-weight: 700; }
+.detail-page .detail-summary { max-width: 54ch; line-height: 1.65; text-wrap: pretty; }
+.detail-page .detail-summary + .detail-summary { margin-top: 18px; }
+.detail-page .detail-practice, .detail-page .detail-resources { border-radius: 12px; }
+
+/* Keep the existing viewport grid as the fallback; capable browsers size the
+   gallery to its actual content bay rather than assuming a full-width page. */
+@supports (container-type: inline-size) {
+  .resources-page .library-results { container: resource-results / inline-size; }
+  .resources-page .resource-grid { grid-template-columns: minmax(0, 1fr); }
+
+  @container resource-results (min-width: 36rem) {
+    .resources-page .resource-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+
+  @container resource-results (min-width: 50rem) {
+    .resources-page .resource-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  }
+}
+
+@media (min-width: 1024px) {
+  .pipeline-introduction { top: calc(110px * var(--pipe-scale)); left: 18.5%; right: 6%; }
+  .pipeline-introduction h1 { font-size: 3.625rem; }
+  .station { left: 12%; right: 12%; }
+  .foundations { top: calc(358.32px * var(--pipe-scale) + 16px); }
+  .models {
+    top: calc(983.5px * var(--pipe-scale) + 440px);
+    left: 52%;
+    right: auto;
+    width: 71.4%;
+  }
+  .models .station-intro { margin-top: 16px; }
+  .practice { top: calc(1320.464px * var(--pipe-scale) + 492px); }
+  .production-footer { aspect-ratio: 941 / 660; }
+  .production-copy { top: 40px; left: 12%; width: 76%; }
+}
+
+@media (max-width: 1023px) {
+  :root { --section-heading-size: clamp(1.875rem, 1.125rem + 2vw, 2.5rem); --section-copy-size: 1.0625rem; }
+  .station { margin-bottom: 80px; }
+  .pipeline-introduction { margin-bottom: 64px; }
+  .pipeline-introduction h1 { font-size: clamp(2.125rem, 1.625rem + 2vw, 2.625rem); }
+  .station-intro, .production-intro { max-width: 48ch; margin-top: 20px; line-height: 1.65; }
+  .sourcing-query { grid-template-columns: minmax(0, 1fr) 36px 88px; gap: 20px; margin-top: 28px; }
+  .sourcing-query .sql-editor { min-width: 0; }
+  .sourcing-database svg { width: 88px; height: 105px; }
+  .sourcing-query-arrow svg { width: 36px; height: 36px; }
+  .sql-editor-body { font-size: .75rem; }
+  .customer-cleaning-comparison { gap: 16px; }
+  .customer-dataset table { font-size: .8125rem; }
+  .customer-dataset th, .customer-dataset td { padding: 8px 10px; }
+  .modeling-logos { gap: 28px; }
+  .modeling-logos img { height: 96px; }
+  .practice { margin-bottom: 0; }
+  .production-footer { padding-top: 48px; padding-bottom: 40px; }
+  .production-tracking-image { margin-top: 24px; }
+  .homepage-resources h2 { margin-left: 0; }
+}
+
+@media (max-width: 760px) {
+  main.resources-page { padding-block-start: 20px; }
+}
+
+@media (max-width: 599px) {
+  .station { margin-bottom: 64px; }
+  .sourcing-query { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+  .sql-editor-body { font-size: .75rem; padding-inline: 10px; gap: 8px; }
+  .sourcing-database svg { width: 80px; height: 95px; }
+  .customer-cleaning { max-width: 300px; }
+  .customer-cleaning-comparison { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+  .modeling-logos { gap: 20px; }
+  .modeling-logos img { height: 72px; }
+  .resources-page .library-choose { padding-inline: 4px; font-size: .75rem; }
+  .resources-page .resource-grid { gap: 16px; }
+  .resources-page .resource-card { padding: 24px 20px; }
+}

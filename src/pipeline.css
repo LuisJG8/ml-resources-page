@@ -3,11 +3,11 @@
   inset: 0 auto auto 0;
   width: 100%;
   --pipe-extra-0: 0;
-  --pipe-extra-1: 210.044642857;
-  --pipe-extra-2: 501.089285714;
+  --pipe-extra-1: 352.875;
+  --pipe-extra-2: 249.035714286;
   --pipe-extra-3: 105.022321428;
   --pipe-total-extra: calc(var(--pipe-extra-0) + var(--pipe-extra-1) + var(--pipe-extra-2) + var(--pipe-extra-3));
-  height: calc(2043px * var(--pipe-scale) + 700px);
+  height: calc(2253px * var(--pipe-scale) + 596px);
   z-index: -1;
   pointer-events: none;
   user-select: none;
@@ -18,7 +18,7 @@
   position: absolute;
   inset: 0 auto auto 0;
   width: 941px;
-  height: calc(1962px + var(--pipe-total-extra) * 1px);
+  height: calc(2172px + var(--pipe-total-extra) * 1px);
   transform-origin: top left;
   transform: scale(var(--pipe-scale, 1));
 }
@@ -37,12 +37,12 @@
 .pipe-slice { position: absolute; left: 0; width: 941px; overflow: hidden; }
 .pipe-slice img { position: absolute; left: 0; width: 941px; height: 1672px; max-width: none; display: block; }
 
-.desktop-pipe-end { position: absolute; top: calc(1512px + var(--pipe-total-extra) * 1px); left: 0; width: 941px; height: 450px; overflow: hidden; z-index: 2; opacity: .52; }
+.desktop-pipe-end { position: absolute; top: calc(1512px + var(--pipe-total-extra) * 1px); left: 0; width: 941px; height: 660px; overflow: hidden; z-index: 2; opacity: .52; }
 .desktop-pipe-end > div { position: absolute; overflow: hidden; }
 .desktop-pipe-end img { position: absolute; width: 941px; height: 1672px; max-width: none; display: block; }
 /* Extend a straight raster row at its native width, preserving the glass edges. */
 .pipe-end-glass { inset: 0; }
-.pipe-end-glass img { left: 0; top: calc(-1540px * 450); transform: scaleY(450); transform-origin: top left; }
+.pipe-end-glass img { left: 0; top: calc(-1540px * 660); transform: scaleY(660); transform-origin: top left; }
 .pipe-end-band { left: 835px; width: 77px; height: 20px; }
 .pipe-end-band img { left: -835px; top: -664px; }
 

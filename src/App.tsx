@@ -1,5 +1,6 @@
 import { lazy, Suspense, useEffect, useState } from 'react';
 import { ArrowRight } from '@phosphor-icons/react/dist/csr/ArrowRight';
+import { ArrowUpRight } from '@phosphor-icons/react/dist/csr/ArrowUpRight';
 import { DatabaseStackIcon } from './DatabaseStackIcon.tsx';
 import { Pipeline } from './Pipeline.tsx';
 import { ProductionFooter } from './ProductionFooter.tsx';
@@ -11,9 +12,9 @@ import { ProgressiveImage } from './ProgressiveImage.tsx';
 import { useScrollReveal } from './useScrollReveal.ts';
 import { SqlEditor } from './SqlEditor.tsx';
 import { CustomerDataCleaning } from './CustomerDataCleaning.tsx';
-import { GarbageFlow } from './GarbageFlow.tsx';
-import { isResourcesPath } from './resource-library-state.ts';
+import { isResourcesPath, resourceLibraryHref } from './resource-library-state.ts';
 import './pipeline-introduction.css';
+import './homepage-resources.css';
 
 const StagePage = lazy(() => import('./StagePage.tsx').then(module => ({ default: module.StagePage })));
 const ResourcesPage = lazy(() => import('./ResourcesPage.tsx'));
@@ -58,7 +59,6 @@ function LearningPath() {
         <section className="station models" id="data-cleaning" aria-labelledby="data-cleaning-title">
           <h2 id="data-cleaning-title" data-reveal=""><StageHeadingLink stageId="data-cleaning" /></h2>
           <StageDescription stageId="data-cleaning" />
-          <GarbageFlow />
           <div className="station-content">
             <CustomerDataCleaning />
           </div>
@@ -76,5 +76,8 @@ function LearningPath() {
     </div></LearningViewport>
 
     <ProductionFooter />
+    <section id="resources" className="homepage-resources" aria-labelledby="resources-title">
+      <h2 id="resources-title" data-reveal=""><a className="stage-heading-link" href={resourceLibraryHref()}>Resources<ArrowUpRight aria-hidden="true" /></a></h2>
+    </section>
   </>;
 }

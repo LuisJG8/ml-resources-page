@@ -42,9 +42,9 @@ test('every resource belongs to one populated format category', () => {
 
 test('category, learning stage, and search apply together', () => {
   assert.deepEqual(filterLibraryResources({ category: 'books', group: 'Modeling', query: 'An Introduction to Statistical Learning' }).map(resource => resource.id), ['isl']);
-  assert.deepEqual(filterLibraryResources({ category: 'videos', group: 'Production' }).map(resource => resource.id), ['datatalks']);
+  assert.deepEqual(filterLibraryResources({ category: 'courses', group: 'Production' }).map(resource => resource.id), ['ml-zoomcamp', 'made-with-ml']);
   assert.deepEqual(filterLibraryResources({ category: 'certifications', group: 'Data Sourcing', query: ' Azure ' }).map(resource => resource.id), ['azure-data-fundamentals']);
-  assert.deepEqual(filterLibraryResources({ category: 'videos', query: '3Blue1Brown' }).map(resource => resource.id), ['linear']);
+  assert.deepEqual(filterLibraryResources({ category: 'books', query: 'Think Stats' }).map(resource => resource.id), ['think-stats']);
   assert.equal(filterLibraryResources().length, resources.length);
 });
 
@@ -61,7 +61,7 @@ test('choosing limits every format to three distinct resources and retains displ
   const matches = filterLibraryResources();
   const ids = chooseResourceIds(matches, () => 0.75);
   const chosen = matches.filter(resource => ids.includes(resource.id));
-  assert.equal(ids.length, 15);
+  assert.equal(ids.length, 12);
   assert.equal(new Set(ids).size, ids.length);
   assert.deepEqual(ids, chosen.map(resource => resource.id));
   for (const category of resourceCategories) {
@@ -105,7 +105,7 @@ test('random draws can change picks without mutating input resources or their or
 
 
 test('retired library formats fall back to all while preserving search and stage', () => {
-  for (const category of ['tutorials', 'datasets']) {
+  for (const category of ['tutorials', 'datasets', 'videos']) {
     assert.deepEqual(readResourceFilters(`?category=${category}&stage=data-cleaning&q=statistics`), {
       group: 'Data Cleaning', query: 'statistics', category: 'all',
     });

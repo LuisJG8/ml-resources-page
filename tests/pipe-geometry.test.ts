@@ -11,13 +11,13 @@ test('the shorter entry preserves the longer study bays and straight finish', ()
     assert.equal(extras[0], 0, 'the former 50px entry extension is removed');
     assert.ok(extras.slice(1).every(extra => extra > 0), 'study bay extensions remain positive');
     near((extendedY(341, extras) - extendedY(-36, extras)) * scale, 217 * scale);
-    near((extendedY(808, extras) - extendedY(545, extras)) * scale, 263 * scale + 200);
-    near((extendedY(1194, extras) - extendedY(1012, extras)) * scale, 263 * scale + 400);
-    near(((extendedY(1296, extras) - extendedY(910, extras)) - (extendedY(910, extras) - extendedY(443, extras))) * scale, 200);
+    near((extendedY(808, extras) - extendedY(545, extras)) * scale, 263 * scale + 336);
+    near((extendedY(1194, extras) - extendedY(1012, extras)) * scale, 263 * scale + 160);
+    near(((extendedY(1296, extras) - extendedY(910, extras)) - (extendedY(910, extras) - extendedY(443, extras))) * scale, -176);
     near((extendedY(1782, extras) - extendedY(1398, extras)) * scale, 384 * scale + 100);
-    near((extendedY(1296, extras) - 1296) * scale, 600 - 79 * scale);
-    near((extendedY(1672, extras) - 1672) * scale, 700 - 79 * scale);
-    near((extendedY(1884, extras) - 1884) * scale, 700 - 79 * scale);
+    near((extendedY(1296, extras) - 1296) * scale, 496 - 79 * scale);
+    near((extendedY(1672, extras) - 1672) * scale, 596 - 79 * scale);
+    near((extendedY(1884, extras) - 1884) * scale, 596 - 79 * scale);
   }
 });
 
@@ -35,10 +35,10 @@ test('coupling masks follow the extended artwork without changing band size', ()
   assert.deepEqual(couplings[0], [31, 72, 78, 20]);
   near((couplings[1][1] - 409) * scale, -160 * scale);
   assert.deepEqual(couplings[1].slice(2), [22, 75]);
-  near((couplings[2][1] - 664) * scale, 200 - 160 * scale);
-  near((couplings[4][1] - 1077) * scale, 200 - 160 * scale);
-  near((couplings[5][1] - 1255) * scale, 600 - 79 * scale);
-  near((couplings[7][1] - PIPE_FINISH_START) * scale, 700 - 79 * scale);
+  near((couplings[2][1] - 664) * scale, 336 - 160 * scale);
+  near((couplings[4][1] - 1077) * scale, 336 - 160 * scale);
+  near((couplings[5][1] - 1255) * scale, 496 - 79 * scale);
+  near((couplings[7][1] - PIPE_FINISH_START) * scale, 596 - 79 * scale);
   assert.deepEqual(couplings[7].slice(2), [77, 20]);
   assert.equal(couplings.length, 9, 'only the lower entry collar is removed; both finish collars remain');
 });

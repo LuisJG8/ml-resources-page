@@ -1,15 +1,15 @@
 export const PIPE_CUTS = [320, 600, 1140, 1540];
-export const PIPE_EXTENSIONS_PX = [0, 200, 400, 100];
+export const PIPE_EXTENSIONS_PX = [0, 336, 160, 100];
 // Remove plain entry glass between the original collar positions.
 export const PIPE_ENTRY_CROP = [110, 270] as const;
 export function croppedY(y: number): number {
   return y - Math.max(0, Math.min(y, PIPE_ENTRY_CROP[1]) - PIPE_ENTRY_CROP[0]);
 }
 // Cleaning's original straight is 81 native pixels shorter than sourcing.
-// Retain that compensation beneath Cleaning's additional 200px of study space.
+// Retain that compensation when balancing the selected design's study bays.
 const PIPE_NATIVE_ADJUSTMENTS = [0, 0, 81, 0];
 export const PIPE_FINISH_START = 1672;
-export const PIPE_FINISH_END = 2122;
+export const PIPE_FINISH_END = 2332;
 export const PIPE_FINISH_BANDS = [PIPE_FINISH_START, PIPE_FINISH_END - 20];
 
 export type Coupling = [left: number, top: number, width: number, height: number];

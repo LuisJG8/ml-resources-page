@@ -36,7 +36,7 @@ body { min-width: 0; }
   .station, .production-copy { left: calc(100% * 39 / 941); }
   .page {
     --pipe-scale: .9521785335;
-    height: calc(1593px * var(--pipe-scale) + 700px);
+    height: calc(1593px * var(--pipe-scale) + 596px);
     aspect-ratio: auto;
   }
   .hero { top: calc(123.728px * var(--pipe-scale)); }
@@ -101,7 +101,7 @@ dialog {
   }
   /* Compact glass ends at x34; page copy begins at x44. */
   .models { margin-left: 10px; }
-  :is(.station, .production-footer) h2 { font-size: clamp(30px, 5.2vw, 40px); max-width: none; }
+  :is(.station, .production-footer, .homepage-resources) h2 { font-size: clamp(30px, 5.2vw, 40px); max-width: none; }
   .station-intro { max-width: 48ch; font-size: 17px; }
   .station-content, .practice .station-content { grid-template-columns: minmax(0, 1fr); }
   .learning-art, .math-art, .tree-art { max-width: 100%; width: min(100%, 320px); }
@@ -131,7 +131,7 @@ dialog {
   .hero p { font-size: 17px; }
   .primary-button { font-size: 15px; }
   .header nav { font-size: 13px; gap: 14px; }
-  :is(.station, .production-footer) h2 { font-size: 30px; }
+  :is(.station, .production-footer, .homepage-resources) h2 { font-size: 30px; }
 }
 
 /* Four-stage navigation shares the existing pipe. */

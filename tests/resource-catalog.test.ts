@@ -5,7 +5,7 @@ import { resources, resourceCategories, stages, certificationProviders } from '.
 import { studyResources } from '../src/study-resources.ts';
 
 test('the curated library has the requested formats and keeps the original statistics book', () => {
-  assert.deepEqual(resourceCategories.map(category => category.id), ['videos', 'certifications', 'books', 'courses', 'interactive']);
+  assert.deepEqual(resourceCategories.map(category => category.id), ['certifications', 'books', 'courses', 'interactive']);
   assert.equal(resources.find(resource => resource.id === 'isl')?.url, 'https://www.statlearning.com/');
   assert.equal(new Set(resources.map(resource => resource.url)).size, resources.length);
   for (const resource of resources) {
